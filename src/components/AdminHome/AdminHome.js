@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 //components
 import LogOutButton from '../LogOutButton/LogOutButton';
 import AddNewContact from '../AddNewContact/AddNewContact';
+import NameAndDate from '../CreateNewAuction/NameAndDate';
 
 //material-ui
 import Grid from "@material-ui/core/Grid";
@@ -49,34 +50,7 @@ class AdminHome extends Component {
           <Grid item sm={4}>
             <Paper style={gridBox}>
               <center>
-                <h3>Create a New Auction</h3>
-                <div>
-                  <TextField
-                    id="auctionNameInput"
-                    label="Auction Name"
-                    margin="normal"
-                    variant="outlined"
-                  />
-                </div>
-                <div>
-                  <TextField
-                    id="startDate"
-                    label="Start Date"
-                    type="date"
-                    defaultValue="2020-01-01"
-                  />
-                </div>
-                <div>
-                  <TextField
-                    id="endDate"
-                    label="End Date"
-                    type="date"
-                    defaultValue="2020-01-01"
-                  />
-                </div>
-                <div>
-                  <Button variant="contained">Create Auction</Button>
-                </div>
+              <NameAndDate />
               </center>
             </Paper>
           </Grid>
