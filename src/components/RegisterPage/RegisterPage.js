@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
 //material-ui
 import TextField from "@material-ui/core/TextField/TextField";
@@ -9,31 +9,37 @@ import Link from "@material-ui/core/Link";
 
 class RegisterPage extends Component {
   state = {
-    username: '',
-    password: '',
+    firstname: "",
+    lastname: "",
+    email: "",
+    username: "",
+    password: ""
   };
 
-  registerUser = (event) => {
+  registerUser = event => {
     event.preventDefault();
 
     if (this.state.username && this.state.password) {
       this.props.dispatch({
-        type: 'REGISTER',
+        type: "REGISTER",
         payload: {
+          firstname: this.state.firstname,
+          lastname: this.state.lastname,
+          email: this.state.email,
           username: this.state.username,
-          password: this.state.password,
-        },
+          password: this.state.password
+        }
       });
     } else {
-      this.props.dispatch({type: 'REGISTRATION_INPUT_ERROR'});
+      this.props.dispatch({ type: "REGISTRATION_INPUT_ERROR" });
     }
-  } // end registerUser
+  }; // end registerUser
 
-  handleInputChangeFor = propertyName => (event) => {
+  handleInputChangeFor = propertyName => event => {
     this.setState({
-      [propertyName]: event.target.value,
+      [propertyName]: event.target.value
     });
-  }
+  };
 
   render() {
     return (
@@ -44,7 +50,7 @@ class RegisterPage extends Component {
           </h2>
         )}
 
-        <form onSubmit={this.registerUser} className="logInDiv">
+        <form className="logInDiv">
           <Paper className="registerPaper">
             <h1>Welcome to Silent Action.</h1>
             <p>
@@ -69,47 +75,72 @@ class RegisterPage extends Component {
                   label="First Name"
                   type="name"
                   variant="outlined"
+                  value={this.state.firstname}
+                  onChange={this.handleInputChangeFor("firstname")}
                 />
               </div>
-            </center>
 
-            <center>
               <div>
                 <TextField
                   id="lastname-input"
                   label="Last Name"
                   type="name"
                   variant="outlined"
+                  value={this.state.lastname}
+                  onChange={this.handleInputChangeFor("lastname")}
                 />
               </div>
-            </center>
 
-            <center>
               <div>
                 <TextField
                   id="email-input"
                   label="Email"
                   type="email"
                   variant="outlined"
+                  value={this.state.email}
+                  onChange={this.handleInputChangeFor("email")}
                 />
               </div>
-            </center>
 
-            <center>
+              <div>
+                <TextField
+                  id="username-input"
+                  type="text"
+                  label="Username"
+                  variant="outlined"
+                  value={this.state.username}
+                  onChange={this.handleInputChangeFor("username")}
+                />
+              </div>
+
               <div>
                 <TextField
                   id="password-input"
                   label="Password"
                   type="password"
                   variant="outlined"
+                  value={this.state.password}
+                  onChange={this.handleInputChangeFor("password")}
                 />
+              </div>
+
+              <div>
+                <Button variant="contained" onClick={this.registerUser}>
+                  Register
+                </Button>
               </div>
             </center>
 
             <center>
-              <div>
-                <Button variant="contained">Register</Button>
-              </div>
+              <button
+                type="button"
+                className="link-button"
+                onClick={() => {
+                  this.props.dispatch({ type: "SET_TO_LOGIN_MODE" });
+                }}
+              >
+                Already have an account? Login here.
+              </button>
             </center>
           </Paper>
         </form>
@@ -179,8 +210,7 @@ class RegisterPage extends Component {
 // if you wanted you could write this code like this:
 // const mapStateToProps = ({errors}) => ({ errors });
 const mapStateToProps = state => ({
-  errors: state.errors,
+  errors: state.errors
 });
 
 export default connect(mapStateToProps)(RegisterPage);
-
