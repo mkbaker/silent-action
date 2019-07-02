@@ -9,7 +9,7 @@ import Paper from "@material-ui/core/Paper";
 
 class BioPhotoUpload extends Component {
     handleClick = () => {
-        this.props.history.push('/info')
+        this.props.history.push('/add-new-item')
     }
   render() {
     return (

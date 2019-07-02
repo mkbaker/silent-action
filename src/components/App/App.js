@@ -19,6 +19,7 @@ import AboutPage from '../AboutPage/AboutPage';
 import AdminHome from '../AdminHome/AdminHome';
 import InfoPage from '../InfoPage/InfoPage';
 import BioPhotoUpload from "../CreateNewAuction/BioPhotoUpload";
+import AddNewItem from "../AddNewItem/AddNewItem";
 
 import './App.css';
 
@@ -63,6 +64,12 @@ class App extends Component {
               path="/create-auction/step2"
               component={BioPhotoUpload}
             />
+            <ProtectedRoute 
+              exact
+              path="/add-new-item"
+              component={AddNewItem}
+              />
+          
             {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the info page instead. */}
             <ProtectedRoute
