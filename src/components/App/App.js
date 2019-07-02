@@ -19,6 +19,13 @@ import InfoPage from '../InfoPage/InfoPage';
 
 import './App.css';
 
+//material-ui
+import TextField from "@material-ui/core/TextField/TextField";
+import Paper from "@material-ui/core/Paper/Paper";
+import Button from "@material-ui/core/Button/Button";
+import Link from "@material-ui/core/Link";
+
+
 class App extends Component {
   componentDidMount () {
     this.props.dispatch({type: 'FETCH_USER'})

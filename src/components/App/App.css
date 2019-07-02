@@ -8,13 +8,23 @@ body {
     margin: 50px;
 }
 
-form {
+/* form {
     background-color: #dbd5d5;
     width: 30%;
     height: 250px;
     margin: 20px auto;
     padding: 25px;
     border-radius: 2px;
+} */
+
+.logInDiv {
+    height: 500px;
+    width: 50%;
+    margin: 25px auto;
+}
+
+.registerPaper {
+    padding: 20px;
 }
 
 input {
@@ -23,27 +33,28 @@ input {
 }
 
 .log-in, .log-out, .register {
-  background-color: #00acb0;
-  border-radius: 4px;
-  color: #f8f8f8;
-  min-height: 50px;
-  min-width: 100px;
-  outline:0;
-  cursor: pointer;
+    background-color: #00acb0;
+    border-radius: 4px;
+    color: #f8f8f8;
+    min-height: 50px;
+    min-width: 100px;
+    outline: 0;
+    cursor: pointer;
 }
 
 .log-in:hover, .log-out:hover, .register:hover {
-  background-color: #008183;
+    background-color: #008183;
 }
 
 /* This line makes the "Register" and "Login" buttons look like links */
+
 .link-button {
-    background:none;
-    color:inherit;
-    border:none;
-    padding:0;
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
     font: inherit;
-    outline:0;
-    border-bottom:1px solid #444; 
+    outline: 0;
+    border-bottom: 1px solid #444;
     cursor: pointer;
 }
