@@ -5,17 +5,20 @@ import {
   Redirect,
   Switch,
 } from 'react-router-dom';
-
 import {connect} from 'react-redux';
 
+//navbar and footer
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
 
+//ProtectedRoute 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
+//routes
 import AboutPage from '../AboutPage/AboutPage';
 import AdminHome from '../AdminHome/AdminHome';
 import InfoPage from '../InfoPage/InfoPage';
+import BioPhotoUpload from "../CreateNewAuction/BioPhotoUpload";
 
 import './App.css';
 
@@ -54,6 +57,11 @@ class App extends Component {
               exact
               path="/home"
               component={AdminHome}
+            />
+            <ProtectedRoute
+              exact
+              path="/create-auction/step2"
+              component={BioPhotoUpload}
             />
             {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the info page instead. */}

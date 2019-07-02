@@ -1,11 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link, withRouter } from "react-router-dom";
+
 
 //material-ui
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
 class NameAndDate extends Component {
+
+    handleClick = () => {
+        this.props.history.push("/create-auction/step2");
+    }
+ 
     render(){
         return (
           <div>
@@ -39,11 +46,13 @@ class NameAndDate extends Component {
             </div>
 
             <div>
-              <Button variant="contained">Create Auction</Button>
+              <Button variant="contained" onClick={this.handleClick}>
+                Create Auction
+              </Button>
             </div>
           </div>
         );
     }
 }
 
-export default NameAndDate;
+export default withRouter(NameAndDate);
