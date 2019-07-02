@@ -88,7 +88,7 @@ class LoginPage extends Component {
               this.props.dispatch({ type: "SET_TO_REGISTER_MODE" });
             }}
           >
-            Register
+            Don't have an account? Register here.
           </button>
         </center>
       </div>
