@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+//material-ui
+import TextField from "@material-ui/core/TextField/TextField";
+import Paper from "@material-ui/core/Paper/Paper";
+import Button from "@material-ui/core/Button/Button";
+import Link from "@material-ui/core/Link";
+
 class LoginPage extends Component {
   state = {
     username: '',
@@ -33,51 +39,54 @@ class LoginPage extends Component {
     return (
       <div>
         {this.props.errors.loginMessage && (
-          <h2
-            className="alert"
-            role="alert"
-          >
+          <h2 className="alert" role="alert">
             {this.props.errors.loginMessage}
           </h2>
         )}
-        <form onSubmit={this.login}>
-          <h1>Login</h1>
-          <div>
-            <label htmlFor="username">
-              Username:
-              <input
-                type="text"
-                name="username"
-                value={this.state.username}
-                onChange={this.handleInputChangeFor('username')}
-              />
-            </label>
-          </div>
-          <div>
-            <label htmlFor="password">
-              Password:
-              <input
-                type="password"
-                name="password"
-                value={this.state.password}
-                onChange={this.handleInputChangeFor('password')}
-              />
-            </label>
-          </div>
-          <div>
-            <input
-              className="log-in"
-              type="submit"
-              name="submit"
-              value="Log In"
-            />
-          </div>
-        </form>
+
+        <center>
+          <form>
+            <Paper className="logInDiv">
+              <h1>Login</h1>
+
+              <div>
+                <TextField
+                  type="text"
+                  name="username"
+                  variant="outlined"
+                  placeholder="Username"
+                  value={this.state.username}
+                  onChange={this.handleInputChangeFor("username")}
+                />
+              </div>
+
+              <div>
+                <TextField
+                  type="password"
+                  name="password"
+                  variant="outlined"
+                  placeholder="Password"
+                  value={this.state.password}
+                  onChange={this.handleInputChangeFor("password")}
+                />
+              </div>
+
+              <div>
+                <Button variant="contained" onClick={this.login}>
+                  Log In
+                </Button>
+              </div>
+            </Paper>
+          </form>
+        </center>
+
         <center>
           <button
             type="button"
             className="link-button"
-            onClick={() => {this.props.dispatch({type: 'SET_TO_REGISTER_MODE'})}}
+            onClick={() => {
+              this.props.dispatch({ type: "SET_TO_REGISTER_MODE" });
+            }}
           >
             Register
           </button>
