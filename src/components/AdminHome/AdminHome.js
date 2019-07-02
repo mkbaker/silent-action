@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 //components
 import LogOutButton from '../LogOutButton/LogOutButton';
+import AddNewContact from '../AddNewContact/AddNewContact';
 
 //material-ui
 import Grid from "@material-ui/core/Grid";
@@ -31,13 +32,13 @@ class AdminHome extends Component {
               <div>
                 <ul>
                   <li>
-                    <Link>Spongebob Squarepants</Link>
+                    <Link>John Grisham</Link>
                   </li>
                   <li>
-                    <Link>Patrick Star</Link>
+                    <Link>JK Rowling</Link>
                   </li>
                   <li>
-                    <Link>Eugene Krabs</Link>
+                    <Link>Dave Eggers</Link>
                   </li>
                 </ul>
               </div>
@@ -84,50 +85,7 @@ class AdminHome extends Component {
           <Grid item sm={4}>
             <Paper style={gridBox}>
               <center>
-                <h3>Add a New Contact</h3>
-                <div>
-                  <TextField
-                    id="firstname-input"
-                    label="First Name"
-                    type="name"
-                    margin="normal"
-                    variant="outlined"
-                  />
-                </div>
-                <div>
-                  <TextField
-                    id="lastname-input"
-                    label="Last Name"
-                    type="name"
-                    margin="normal"
-                    variant="outlined"
-                  />
-                </div>
-                <div>
-                  <TextField
-                    id="email-input"
-                    label="Email"
-                    type="email"
-                    margin="normal"
-                    variant="outlined"
-                  />
-                </div>
-                <div>
-                  <TextField
-                    id="phone-input"
-                    value="(1  )    -    "
-                    label="Phone Number"
-                    type="phone"
-                    margin="normal"
-                    variant="outlined"
-                  />
-                </div>
-                <div>
-                  <Button variant="contained">Add Contact</Button>
-                </div>
-                <div>
-                  <Link>View All Contacts</Link>
-                </div>
+              <AddNewContact />
               </center>
             </Paper>
           </Grid>
