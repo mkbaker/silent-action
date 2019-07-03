@@ -24,6 +24,10 @@ class BioPhotoUpload extends Component {
       this.props.dispatch({
         type: "CREATE_AUCTION_STEP_TWO",
         payload: {
+          auctionName: this.props.reduxState.newAuctionReducer.auctionName,
+          auctionOwner: this.props.reduxState.user.id,
+          startDate: this.props.reduxState.newAuctionReducer.startDate,
+          endDate: this.props.reduxState.newAuctionReducer.endDate,
           bio: this.state.bio,
           photoUrl: this.state.photoUrl
         }

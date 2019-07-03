@@ -7,7 +7,6 @@ const newAuctionReducer = (state = {auctionName: '', startDate:'', endDate:'', b
             }
         case 'CREATE_AUCTION_STEP_TWO' :
             return {
-                ...state,
                 ...action.payload
             }
     }
