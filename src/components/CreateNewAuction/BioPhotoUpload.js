@@ -8,9 +8,35 @@ import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 
 class BioPhotoUpload extends Component {
-    handleClick = () => {
-        this.props.history.push('/add-new-item')
+  state = {
+    bio: "",
+    photoUrl: ""
+  };
+
+  handleInputChangeFor = propertyName => event => {
+    this.setState({
+      [propertyName]: event.target.value
+    });
+  };
+
+  handleClick = event => {
+    if (this.state.bio && this.state.photoUrl) {
+      this.props.dispatch({
+        type: "CREATE_AUCTION_STEP_TWO",
+        payload: {
+          bio: this.state.bio,
+          photoUrl: this.state.photoUrl
+        }
+      });
+      this.props.history.push("/add-new-item");
+    } else {
+      alert(
+        "Please make sure you've entered all information before continuing."
+      );
     }
+  };
+
+
   render() {
     return (
       <div className="logInDiv">
@@ -28,9 +54,17 @@ class BioPhotoUpload extends Component {
             placeholder="Write a short bio about the beneficiary here."
             margin="normal"
             variant="outlined"
+            value={this.state.bio}
+            onChange={this.handleInputChangeFor("bio")}
           />
 
-          <TextField fullWidth label="Photo URL" variant="outlined" />
+          <TextField
+            fullWidth
+            label="Photo URL"
+            variant="outlined"
+            value={this.state.photoUrl}
+            onChange={this.handleInputChangeFor("photoUrl")}
+          />
 
           <center>
             <Button variant="outlined" onClick={this.handleClick}>
@@ -43,4 +77,9 @@ class BioPhotoUpload extends Component {
   }
 }
 
-export default withRouter(BioPhotoUpload);
+const mapReduxStateToProps = reduxState => ({
+  reduxState
+});
+
+
+export default connect(mapReduxStateToProps)(withRouter(BioPhotoUpload));

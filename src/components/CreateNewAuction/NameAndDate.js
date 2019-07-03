@@ -12,6 +12,7 @@ class NameAndDate extends Component {
     startDate: "",
     endDate: ""
   };
+  
   handleInputChangeFor = propertyName => event => {
     this.setState({
       [propertyName]: event.target.value
