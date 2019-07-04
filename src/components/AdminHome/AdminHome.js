@@ -2,17 +2,14 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 
 //components
-import LogOutButton from '../LogOutButton/LogOutButton';
 import AddNewContact from '../AddNewContact/AddNewContact';
 import NameAndDate from '../CreateNewAuction/NameAndDate';
+import ViewAuctions from '../ViewAuctions/ViewAuctions';
 
 
 //material-ui
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import Link from "@material-ui/core/Link";
 
 //defines height for grid components
 const gridBox = {
@@ -25,25 +22,14 @@ class AdminHome extends Component {
       <div className="adminHomeContainerDiv">
         <h1>Welcome back, {this.props.user.firstname}. </h1>
         <Grid container spacing={2}>
+
           {/* left box: view past auctions */}
           <Grid item sm={4}>
             <Paper style={gridBox}>
               <center>
                 <h3>View Auctions</h3>
               </center>
-              <div>
-                <ul>
-                  <li>
-                    <Link>John Grisham</Link>
-                  </li>
-                  <li>
-                    <Link>JK Rowling</Link>
-                  </li>
-                  <li>
-                    <Link>Dave Eggers</Link>
-                  </li>
-                </ul>
-              </div>
+             <ViewAuctions />
             </Paper>
           </Grid>
 

@@ -34,6 +34,7 @@ class AddNewItem extends Component {
                     src="https://image.shutterstock.com/z/stock-photo-sweet-homemade-thanksgiving-pumpkin-pie-ready-to-eat-1185116455.jpg"
                     height="200px"
                     width="200px"
+                    alt="Placeholder"
                   />
                   
                     <Link>Upload Photo</Link>
@@ -111,4 +112,4 @@ class AddNewItem extends Component {
     }
 }
 
-export default AddNewItem;
+export default connect()(AddNewItem);

@@ -23,11 +23,7 @@ import AddNewItem from "../AddNewItem/AddNewItem";
 
 import './App.css';
 
-//material-ui
-import TextField from "@material-ui/core/TextField/TextField";
-import Paper from "@material-ui/core/Paper/Paper";
-import Button from "@material-ui/core/Button/Button";
-import Link from "@material-ui/core/Link";
+
 
 
 class App extends Component {
@@ -43,9 +39,11 @@ class App extends Component {
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/home" />
+
             {/* Visiting localhost:3000/about will show the about page.
             This is a route anyone can see, no login necessary */}
             <Route exact path="/about" component={AboutPage} />
+            
             {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/home will show the AdminHome if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the 'Login' or 'Register' page.

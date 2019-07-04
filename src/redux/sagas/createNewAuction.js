@@ -1,9 +1,8 @@
-import { put, takeEvery } from "redux-saga/effects";
+import { takeEvery } from "redux-saga/effects";
 import axios from "axios";
 
 function* createNewAuction(action) {
     try {
-        //LEFT OFF HERE. THIS URL IS NOT CONNECTING TO THE ROUTER. I'VE HAD THIS ISSUE BEFORE AND NEED TO LOOK IT UP.
         yield axios.post('/api/createAuction', action.payload);
     } catch(error) {
         console.log("Error with creating auction:", error);

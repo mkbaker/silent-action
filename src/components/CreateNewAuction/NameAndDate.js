@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 //material-ui
 import TextField from "@material-ui/core/TextField";
@@ -12,7 +12,7 @@ class NameAndDate extends Component {
     startDate: "",
     endDate: ""
   };
-  
+
   handleInputChangeFor = propertyName => event => {
     this.setState({
       [propertyName]: event.target.value

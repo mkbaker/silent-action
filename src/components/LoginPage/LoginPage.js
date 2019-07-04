@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import TextField from "@material-ui/core/TextField/TextField";
 import Paper from "@material-ui/core/Paper/Paper";
 import Button from "@material-ui/core/Button/Button";
-import Link from "@material-ui/core/Link";
 
 class LoginPage extends Component {
   state = {

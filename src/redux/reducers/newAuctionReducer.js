@@ -9,8 +9,8 @@ const newAuctionReducer = (state = {auctionName: '', startDate:'', endDate:'', b
             return {
                 ...action.payload
             }
+        default : return state;
     }
-    return state;
 }
 
 export default newAuctionReducer;
