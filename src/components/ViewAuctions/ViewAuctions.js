@@ -6,8 +6,8 @@ import Link from "@material-ui/core/Link";
 
 class ViewAuctions extends Component {
   componentDidMount() {
-    this.props.dispatch({ type: "GET_ADMIN_AUCTIONS", payload: this.props.reduxState.user});
-    
+    this.props.dispatch({ type: "GET_ADMIN_AUCTIONS", payload: this.props.reduxState.user.id });
+    console.log(this.props.reduxState.user.id);
   }
 
   render() {
