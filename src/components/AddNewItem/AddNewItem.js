@@ -125,7 +125,7 @@ class AddNewItem extends Component {
                 </div>
                 <div>
                   {this.state.pictures ? 
-                  <img src={this.state.pictures} alt="Your photo" height="150px" width="150px" />
+                  <img src={this.state.pictures} alt="Your pic here" height="150px" width="150px" />
                   :
                   <></>}
                 </div>

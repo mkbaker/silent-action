@@ -13,6 +13,7 @@ const userRouter = require('./routes/user.router');
 const createAuction = require('./routes/createAuction.router');
 const getAuctions = require('./routes/getAuctions.router');
 const addNewItem = require('./routes/addNewItem.router');
+const getAuctionItems = require('./routes/getAuctionItems.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -30,7 +31,7 @@ app.use('/api/user', userRouter);
 app.use('/api/createAuction', createAuction);
 app.use('/api/getauctions', getAuctions);
 app.use('/api/add-new-item', addNewItem);
-
+app.use('/api/get-auction-items', getAuctionItems);
 
 // Serve static files
 app.use(express.static('build'));
