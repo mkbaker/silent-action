@@ -38,6 +38,8 @@ class App extends Component {
           <Nav />
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
+            {/* comment out this redirect if you want to have a welcome page instead of login */}
+            {/* add route to welcome page (create that first) */}
             <Redirect exact from="/" to="/home" />
 
             {/* Visiting localhost:3000/about will show the about page.

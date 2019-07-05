@@ -4,6 +4,7 @@ import registrationSaga from './registrationSaga';
 import userSaga from './userSaga';
 import createNewAuctionSaga from './createNewAuction';
 import getAdminAuctionsSaga from './getAdminAuctionsSaga';
+import addNewItem from './addNewItem';
 
 
 // rootSaga is the primary saga.
@@ -20,5 +21,6 @@ export default function* rootSaga() {
     userSaga(),
     createNewAuctionSaga(),
     getAdminAuctionsSaga(),
+    addNewItem(),
   ]);
 }

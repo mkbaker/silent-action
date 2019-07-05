@@ -7,17 +7,16 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import Link from "@material-ui/core/Link";
+// import Link from "@material-ui/core/Link";
 import InputAdornment from "@material-ui/core/InputAdornment";
 
 class AddNewItem extends Component {
   state = {
     pictures: {},
     itemName: "",
-    minimumBid: "",
+    minimumBid: 0,
     itemDescription: "",
-    // there's a better way to track the current auction, this is a placeholder for now
-    //addToAuction: this.props.reduxState.adminAuctionsReducer[2].id
+    auctionId: this.props.reduxState.setSelectedAuctionReducer.id
   };
   
   //this might change later. getting this info for this.state.addToAuction
@@ -39,12 +38,17 @@ class AddNewItem extends Component {
 
   //handle "Add Item" button click
   handleAddItem = () => {
-    console.log(this.state);
+    // console.log(this.state);
+    //dispatch to saga 
+    this.props.dispatch({
+      type: "ADD_NEW_ITEM",
+      payload: this.state
+    })
     this.setState( {
       pictures: {},
       itemName: '',
-      minimumBid: '',
-      itemDescription: ''
+      minimumBid: 0,
+      itemDescription: '',
     });
   };
 
@@ -60,7 +64,7 @@ class AddNewItem extends Component {
 
   //handles image upload
   onDrop = picture => {
-    console.log(picture);
+    // console.log(picture);
     this.setState({
       pictures: picture
     });
@@ -71,7 +75,7 @@ class AddNewItem extends Component {
       <div className="logInDiv">
         <Paper>
           <center>
-            <h1>Add an Item</h1>
+            <h1>Add an Item to {this.props.reduxState.setSelectedAuctionReducer.auction_name}'s Auction</h1>
           </center>
 
           <Grid container>
@@ -80,7 +84,7 @@ class AddNewItem extends Component {
                 {/* Upload Photo */}
                 {/* conditionally render preview based on whether local state has an image
                 NOT WORKING LIKE I"D EXPECT. FIX THIS LATER */}
-                {this.state.pictures === {} ? 
+                {/* {this.state.pictures ? 
                 <ImageUploader
                   withIcon={true}
                   buttonText="Choose image"
@@ -90,7 +94,7 @@ class AddNewItem extends Component {
                   singleImage={true}
                   withPreview={false}
                 /> 
-                :
+                : */
                 <ImageUploader
                   withIcon={true}
                   buttonText="Choose image"
@@ -186,4 +190,8 @@ class AddNewItem extends Component {
   }
 }
 
-export default connect()(AddNewItem);
+const mapReduxStateToProps = reduxState => ({
+  reduxState
+});
+
+export default connect(mapReduxStateToProps)(AddNewItem);

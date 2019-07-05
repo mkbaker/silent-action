@@ -13,11 +13,12 @@ class ViewAuctions extends Component {
 //     console.log(this.props.reduxState.user.id);
 //   }
 
-handleLink = (id) => (event) => {
-  console.log(id)
+//sets selected auction in a reducer to access at /add-new-item
+handleLink = (auction) => (event) => {
+  console.log(auction)
   this.props.dispatch({
     type: 'SET_SELECTED_AUCTION',
-    payload: id
+    payload: auction
   })
 }
  
@@ -28,10 +29,10 @@ handleLink = (id) => (event) => {
           {this.props.reduxState.adminAuctionsReducer.map(auction => (
             <li key={auction.id}>
               <Link
-                // component={RouterLink}
-                // to='/add-new-item'
+                component={RouterLink}
+                to='/add-new-item'
                 value={auction.id}
-                onClick={this.handleLink(auction.id)}
+                onClick={this.handleLink(auction)}
               >
                 {auction.auction_name}
               </Link>

@@ -5,7 +5,7 @@ const router = express.Router();
 router.get("/", (req, res) => {
     //the req.body is not getting here correctly, but req.user is accessing the User reducer info. 
     //this is functional, but is it correct? it might break later? 
-  console.log("get route hit with payload:", req.user.id);
+  // console.log("get route hit with payload:", req.user.id);
   pool
     .query(
       `SELECT * 
