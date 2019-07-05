@@ -17,19 +17,26 @@ const gridBox = {
 }
 
 class AdminHome extends Component {
+
+  componentDidMount() {
+    this.props.dispatch({
+      type: "GET_ADMIN_AUCTIONS",
+      payload: this.props.reduxState.user.id
+    });
+    // console.log(this.props.reduxState.user.id);
+  }
   render() {
     return (
       <div className="adminHomeContainerDiv">
         <h1>Welcome back, {this.props.user.firstname}. </h1>
         <Grid container spacing={2}>
-
           {/* left box: view past auctions */}
           <Grid item sm={4}>
             <Paper style={gridBox}>
               <center>
                 <h3>View Auctions</h3>
               </center>
-             <ViewAuctions />
+              <ViewAuctions />
             </Paper>
           </Grid>
 
@@ -37,7 +44,7 @@ class AdminHome extends Component {
           <Grid item sm={4}>
             <Paper style={gridBox}>
               <center>
-              <NameAndDate />
+                <NameAndDate />
               </center>
             </Paper>
           </Grid>
@@ -46,7 +53,7 @@ class AdminHome extends Component {
           <Grid item sm={4}>
             <Paper style={gridBox}>
               <center>
-              <AddNewContact />
+                <AddNewContact />
               </center>
             </Paper>
           </Grid>
@@ -59,12 +66,13 @@ class AdminHome extends Component {
 // Instead of taking everything from state, we just want the user info.
 // if you wanted you could write this code like this:
 // const mapStateToProps = ({user}) => ({ user });
-const mapStateToProps = state => ({
-  user: state.user,
+const mapReduxStateToProps = reduxState => ({
+  user: reduxState.user,
+  reduxState,
 });
 
 // this allows us to use <App /> in index.js
-export default connect(mapStateToProps)(AdminHome);
+export default connect(mapReduxStateToProps)(AdminHome);
 
 
 

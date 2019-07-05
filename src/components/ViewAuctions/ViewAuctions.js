@@ -5,16 +5,27 @@ import Link from "@material-ui/core/Link";
 
 
 class ViewAuctions extends Component {
-  componentDidMount() {
-    this.props.dispatch({ type: "GET_ADMIN_AUCTIONS", payload: this.props.reduxState.user.id });
-    console.log(this.props.reduxState.user.id);
-  }
 
+
+    //moved this code to AdminHome.js
+//   componentDidMount() {
+//     this.props.dispatch({ type: "GET_ADMIN_AUCTIONS", payload: this.props.reduxState.user.id });
+//     console.log(this.props.reduxState.user.id);
+//   }
+ 
   render() {
     return (
       <div>
         <ul>
-          <li>
+          {/* LEFT OFF HERE */}
+          {/* is this breaking because it doesn't exist yet?  */}
+          {/* this is trying to map before the reducer is created */}
+          {this.props.reduxState.adminAuctionsReducer.map(auction => (
+            <li key={auction.id}>
+              <Link>{auction.auction_name}</Link>
+            </li>
+          ))}
+          {/* <li>
             <Link>John Grisham</Link>
           </li>
           <li>
@@ -22,7 +33,7 @@ class ViewAuctions extends Component {
           </li>
           <li>
             <Link>Dave Eggers</Link>
-          </li>
+          </li> */}
         </ul>
       </div>
     );
