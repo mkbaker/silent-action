@@ -12,11 +12,21 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 
 class AddNewItem extends Component {
   state = {
-    pictures: [],
+    pictures: {},
     itemName: "",
     minimumBid: "",
-    itemDescription: ""
+    itemDescription: "",
+    // there's a better way to track the current auction, this is a placeholder for now
+    //addToAuction: this.props.reduxState.adminAuctionsReducer[2].id
   };
+  
+  //this might change later. getting this info for this.state.addToAuction
+  //  componentDidMount() {
+  //   this.props.dispatch({
+  //     type: "GET_ADMIN_AUCTIONS",
+  //     payload: this.props.reduxState.user.id
+  //   });
+  // }
 
   //handle input changes
   handleChangeFor = input => event => {
@@ -31,7 +41,7 @@ class AddNewItem extends Component {
   handleAddItem = () => {
     console.log(this.state);
     this.setState( {
-      pictures: [],
+      pictures: {},
       itemName: '',
       minimumBid: '',
       itemDescription: ''
@@ -52,7 +62,7 @@ class AddNewItem extends Component {
   onDrop = picture => {
     console.log(picture);
     this.setState({
-      pictures: this.state.pictures.concat(picture)
+      pictures: picture
     });
   };
 
@@ -68,6 +78,19 @@ class AddNewItem extends Component {
             <Grid item xs={6} className="imageUploadDiv">
               <center>
                 {/* Upload Photo */}
+                {/* conditionally render preview based on whether local state has an image
+                NOT WORKING LIKE I"D EXPECT. FIX THIS LATER */}
+                {this.state.pictures === {} ? 
+                <ImageUploader
+                  withIcon={true}
+                  buttonText="Choose image"
+                  onChange={this.onDrop}
+                  imgExtension={[".jpg", ".gif", ".png", ".gif"]}
+                  maxFileSize={5242880}
+                  singleImage={true}
+                  withPreview={false}
+                /> 
+                :
                 <ImageUploader
                   withIcon={true}
                   buttonText="Choose image"
@@ -76,7 +99,9 @@ class AddNewItem extends Component {
                   maxFileSize={5242880}
                   singleImage={true}
                   withPreview={true}
-                />
+                /> 
+              }
+
               </center>
             </Grid>
 
@@ -132,6 +157,7 @@ class AddNewItem extends Component {
           </Grid>
         </Paper>
 
+        {/* below main content */}
         <div>
           <center>
             <p>All done adding items?</p>
