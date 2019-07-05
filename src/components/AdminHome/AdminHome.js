@@ -25,6 +25,7 @@ class AdminHome extends Component {
     });
     // console.log(this.props.reduxState.user.id);
   }
+  
   render() {
     return (
       <div className="adminHomeContainerDiv">

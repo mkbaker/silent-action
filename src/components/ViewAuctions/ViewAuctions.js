@@ -17,23 +17,11 @@ class ViewAuctions extends Component {
     return (
       <div>
         <ul>
-          {/* LEFT OFF HERE */}
-          {/* is this breaking because it doesn't exist yet?  */}
-          {/* this is trying to map before the reducer is created */}
           {this.props.reduxState.adminAuctionsReducer.map(auction => (
             <li key={auction.id}>
               <Link>{auction.auction_name}</Link>
             </li>
           ))}
-          {/* <li>
-            <Link>John Grisham</Link>
-          </li>
-          <li>
-            <Link>JK Rowling</Link>
-          </li>
-          <li>
-            <Link>Dave Eggers</Link>
-          </li> */}
         </ul>
       </div>
     );
