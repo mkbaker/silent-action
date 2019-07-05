@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import ImageUploader from "react-images-upload";
+// import ImageUploader from "react-images-upload";
+
+//components
+import AuctionItemsList from '../AuctionItemsList/AuctionItemsList';
 
 //material-ui
 import Grid from "@material-ui/core/Grid";
@@ -12,7 +15,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 
 class AddNewItem extends Component {
   state = {
-    pictures: {},
+    pictures: '',
     itemName: "",
     minimumBid: 0,
     itemDescription: "",
@@ -45,7 +48,7 @@ class AddNewItem extends Component {
       payload: this.state
     })
     this.setState( {
-      pictures: {},
+      pictures: '',
       itemName: '',
       minimumBid: 0,
       itemDescription: '',
@@ -62,26 +65,31 @@ class AddNewItem extends Component {
     this.props.history.push("/info");
   };
 
-  //handles image upload
-  onDrop = picture => {
-    // console.log(picture);
-    this.setState({
-      pictures: picture
-    });
-  };
+  //handles image upload for ImageUploader which is not functional at this time
+  // onDrop = (picture, file) => {
+  //   console.log(file);
+  //   this.setState({
+  //     pictures: picture
+  //   });
+  // };
 
   render() {
     return (
       <div className="logInDiv">
         <Paper>
           <center>
-            <h1>Add an Item to {this.props.reduxState.setSelectedAuctionReducer.auction_name}'s Auction</h1>
+            <h1>
+              Add an Item to{" "}
+              {this.props.reduxState.setSelectedAuctionReducer.auction_name}
+              's Auction
+            </h1>
           </center>
 
           <Grid container>
             <Grid item xs={6} className="imageUploadDiv">
               <center>
                 {/* Upload Photo */}
+                {/* this does not work */}
                 {/* conditionally render preview based on whether local state has an image
                 NOT WORKING LIKE I"D EXPECT. FIX THIS LATER */}
                 {/* {this.state.pictures ? 
@@ -94,18 +102,33 @@ class AddNewItem extends Component {
                   singleImage={true}
                   withPreview={false}
                 /> 
-                : */
-                <ImageUploader
-                  withIcon={true}
-                  buttonText="Choose image"
-                  onChange={this.onDrop}
-                  imgExtension={[".jpg", ".gif", ".png", ".gif"]}
-                  maxFileSize={5242880}
-                  singleImage={true}
-                  withPreview={true}
-                /> 
-              }
-
+                :  */}
+                {/* //   <ImageUploader */}
+                {/* //     withIcon={true}
+              //     buttonText="Choose image"
+              //     onChange={this.onDrop}
+              //     imgExtension={[".jpg", ".gif", ".png", ".gif"]}
+              //     maxFileSize={5242880}
+              //     singleImage={true}
+              //     withPreview={true}
+              //   /> 
+              // } */}
+                <div>
+                  <TextField
+                    id="photoURL"
+                    margin="dense"
+                    variant="outlined"
+                    placeholder="Photo URL"
+                    value={this.state.pictures}
+                    onChange={this.handleChangeFor("pictures")}
+                  />
+                </div>
+                <div>
+                  {this.state.pictures ? 
+                  <img src={this.state.pictures} alt="Your photo" height="150px" width="150px" />
+                  :
+                  <></>}
+                </div>
               </center>
             </Grid>
 
@@ -185,6 +208,8 @@ class AddNewItem extends Component {
             Review Auction
           </Button>
         </div>
+
+        <AuctionItemsList />
       </div>
     );
   }
