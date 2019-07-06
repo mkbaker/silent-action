@@ -62,7 +62,7 @@ class AddNewItem extends Component {
 
   //handle "Reivew Auction" button click
   handleReview = () => {
-    this.props.history.push("/info");
+    this.props.history.push("/review");
   };
 
   //handles image upload for ImageUploader which is not functional at this time
@@ -204,7 +204,7 @@ class AddNewItem extends Component {
           >
             Save and Quit
           </Button>
-          <Button className="reviewAuctionButton" variant="contained">
+          <Button className="reviewAuctionButton" variant="contained" onClick={this.handleReview}>
             Review Auction
           </Button>
         </div>

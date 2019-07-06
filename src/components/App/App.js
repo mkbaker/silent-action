@@ -1,34 +1,32 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 import {
   HashRouter as Router,
   Route,
   Redirect,
-  Switch,
-} from 'react-router-dom';
-import {connect} from 'react-redux';
+  Switch
+} from "react-router-dom";
+import { connect } from "react-redux";
 
 //navbar and footer
-import Nav from '../Nav/Nav';
-import Footer from '../Footer/Footer';
+import Nav from "../Nav/Nav";
+import Footer from "../Footer/Footer";
 
-//ProtectedRoute 
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
+//ProtectedRoute
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 //routes
-import AboutPage from '../AboutPage/AboutPage';
-import AdminHome from '../AdminHome/AdminHome';
-import InfoPage from '../InfoPage/InfoPage';
+import AboutPage from "../AboutPage/AboutPage";
+import AdminHome from "../AdminHome/AdminHome";
+import InfoPage from "../InfoPage/InfoPage";
 import BioPhotoUpload from "../CreateNewAuction/BioPhotoUpload";
 import AddNewItem from "../AddNewItem/AddNewItem";
+import AuctionItemsList from '../AuctionItemsList/AuctionItemsList';
 
-import './App.css';
-
-
-
+import "./App.css";
 
 class App extends Component {
-  componentDidMount () {
-    this.props.dispatch({type: 'FETCH_USER'})
+  componentDidMount() {
+    this.props.dispatch({ type: "FETCH_USER" });
   }
 
   render() {
@@ -45,7 +43,7 @@ class App extends Component {
             {/* Visiting localhost:3000/about will show the about page.
             This is a route anyone can see, no login necessary */}
             <Route exact path="/about" component={AboutPage} />
-            
+
             {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/home will show the AdminHome if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the 'Login' or 'Register' page.
@@ -56,11 +54,8 @@ class App extends Component {
               path="/create-auction/step2"
               component={BioPhotoUpload}
             />
-            <ProtectedRoute
-              exact
-              path="/add-new-item"
-              component={AddNewItem}
-            />
+            <ProtectedRoute exact path="/add-new-item" component={AddNewItem} />
+            <ProtectedRoute exact path="/review" component={AuctionItemsList} />
 
             {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the info page instead. */}
@@ -69,13 +64,14 @@ class App extends Component {
             <Route render={() => <h1>404</h1>} />
           </Switch>
 
-            {/* this allows me to view redux state. delete later */}
+          {/* this allows me to view redux state. delete later */}
           <pre>{JSON.stringify(this.props.reduxState, null, 2)}</pre>
 
           <Footer />
         </div>
       </Router>
-    );}
+    );
+  }
 }
 
 const mapReduxStateToProps = reduxState => ({

@@ -62,3 +62,17 @@ input {
 .reviewAuctionButton {
     float: right;
 }
+
+/* styles for AuctionItemList.js */
+
+.profileImage {
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    border: 2px solid black;
+}
+
+.beneficiaryHeaderDiv{
+    padding: 10px;
+    margin-bottom: 10px;
+}
