@@ -2,10 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import '../App/App.css';
 
+//components
+import BeneficiaryHeader from '../BeneficiaryHeader/BeneficiaryHeader';
+
 //material-ui
 import Grid from '@material-ui/core/Grid';
 import Card from "@material-ui/core/Card";
-import Paper from "@material-ui/core/Paper";
+// import Paper from "@material-ui/core/Paper";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
@@ -21,36 +24,19 @@ class AuctionItemsList extends Component {
             payload: this.props.reduxState.setSelectedAuctionReducer.id})
     }
     handleDelete = () => {
-        console.log('clicked delete');
+        console.log('clicked delete, id:')
     }
     render() {
         return (
           <div>
-            <div>
-              <Paper className="beneficiaryHeaderDiv">
-                <img
-                className="profileImage"
-                  src={
-                    this.props.reduxState.setSelectedAuctionReducer
-                      .photo_url
-                  }
-                  alt="Beneficiary"
-                  height="150px"
-                  width="auto"
-                />
-
-                <span>
-                  {this.props.reduxState.setSelectedAuctionReducer.bio}
-                </span>
-              </Paper>
-            </div>
+              <BeneficiaryHeader /> 
             
             {/* maps each item on a card */}
-            <Grid container xs={12} spacing={2}>
+            <Grid container spacing={2}>
               {this.props.reduxState.setAuctionItemsReducer.map(
                 item => {
                   return (
-                    <Grid item xs={4}>
+                    <Grid item xs={4} key={item.id}>
                       <Card>
                         <CardActionArea>
                           <CardMedia

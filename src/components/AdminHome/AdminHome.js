@@ -7,6 +7,7 @@ import NameAndDate from '../CreateNewAuction/NameAndDate';
 import ViewAuctions from '../ViewAuctions/ViewAuctions';
 
 
+
 //material-ui
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
@@ -31,6 +32,7 @@ class AdminHome extends Component {
       <div className="adminHomeContainerDiv">
         <h1>Welcome back, {this.props.user.firstname}. </h1>
         <Grid container spacing={2}>
+
           {/* left box: view past auctions */}
           <Grid item sm={4}>
             <Paper style={gridBox}>
@@ -42,11 +44,13 @@ class AdminHome extends Component {
           </Grid>
 
           {/* middle box: create a new auction */}
+          {/* conditionally renders auction detail or create new if setSelectedAuctionReducer is empty */}
           {this.props.reduxState.setSelectedAuctionReducer.id ? (
             <Grid item sm={4}>
               <Paper style={gridBox}>
                 <center>
-                  <p>hey</p>
+                  <h3>{this.props.reduxState.setSelectedAuctionReducer.auction_name}</h3>
+                 
                 </center>
               </Paper>
             </Grid>
