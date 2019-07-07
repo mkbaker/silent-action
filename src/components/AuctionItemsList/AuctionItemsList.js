@@ -12,7 +12,6 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import Avatar from "@material-ui/core/Avatar";
 
 class AuctionItemsList extends Component {
 
@@ -21,7 +20,9 @@ class AuctionItemsList extends Component {
             type: 'GET_AUCTION_ITEMS',
             payload: this.props.reduxState.setSelectedAuctionReducer.id})
     }
-
+    handleDelete = () => {
+        console.log('clicked delete');
+    }
     render() {
         return (
           <div>
@@ -43,7 +44,8 @@ class AuctionItemsList extends Component {
                 </span>
               </Paper>
             </div>
-
+            
+            {/* maps each item on a card */}
             <Grid container xs={12} spacing={2}>
               {this.props.reduxState.setAuctionItemsReducer.map(
                 item => {
@@ -76,11 +78,20 @@ class AuctionItemsList extends Component {
                           </CardContent>
                         </CardActionArea>
                         <CardActions>
-                          <Button size="small" color="primary">
-                            Share
+                          <Button
+                            variant="outlined"
+                            size="small"
+                            color="primary"
+                            onClick={this.handleDelete}
+                          >
+                            Delete
                           </Button>
-                          <Button size="small" color="primary">
-                            Learn More
+                          <Button
+                            variant="outlined"
+                            size="small"
+                            color="primary"
+                          >
+                            Edit
                           </Button>
                         </CardActions>
                       </Card>

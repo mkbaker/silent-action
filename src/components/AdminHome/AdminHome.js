@@ -25,7 +25,7 @@ class AdminHome extends Component {
     });
     // console.log(this.props.reduxState.user.id);
   }
-  
+
   render() {
     return (
       <div className="adminHomeContainerDiv">
@@ -42,13 +42,23 @@ class AdminHome extends Component {
           </Grid>
 
           {/* middle box: create a new auction */}
-          <Grid item sm={4}>
-            <Paper style={gridBox}>
-              <center>
-                <NameAndDate />
-              </center>
-            </Paper>
-          </Grid>
+          {this.props.reduxState.setSelectedAuctionReducer.id ? (
+            <Grid item sm={4}>
+              <Paper style={gridBox}>
+                <center>
+                  <p>hey</p>
+                </center>
+              </Paper>
+            </Grid>
+          ) : (
+            <Grid item sm={4}>
+              <Paper style={gridBox}>
+                <center>
+                  <NameAndDate />
+                </center>
+              </Paper>
+            </Grid>
+          )}
 
           {/* third box: add new contact  */}
           <Grid item sm={4}>
