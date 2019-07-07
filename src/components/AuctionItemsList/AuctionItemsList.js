@@ -73,7 +73,7 @@ class AuctionItemsList extends Component {
                             size="small"
                             color="primary"
                             onClick={this.handleDelete}
-                            value={item.id}
+                            value={[item.id, item.belongs_to]}
                           >
                             Delete
                           </button>
