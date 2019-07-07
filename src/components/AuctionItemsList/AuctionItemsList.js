@@ -13,7 +13,7 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
+// import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
 class AuctionItemsList extends Component {
@@ -23,8 +23,12 @@ class AuctionItemsList extends Component {
             type: 'GET_AUCTION_ITEMS',
             payload: this.props.reduxState.setSelectedAuctionReducer.id})
     }
-    handleDelete = () => {
-        console.log('clicked delete, id:')
+    handleDelete = (event) => {
+        // console.log('clicked delete, id:', event.target.value )
+        this.props.dispatch({
+            type: 'DELETE_ITEM',
+            payload: event.target.value
+        })
     }
     render() {
         return (
@@ -64,21 +68,22 @@ class AuctionItemsList extends Component {
                           </CardContent>
                         </CardActionArea>
                         <CardActions>
-                          <Button
+                          <button
                             variant="outlined"
                             size="small"
                             color="primary"
                             onClick={this.handleDelete}
+                            value={item.id}
                           >
                             Delete
-                          </Button>
-                          <Button
+                          </button>
+                          <button
                             variant="outlined"
                             size="small"
                             color="primary"
                           >
                             Edit
-                          </Button>
+                          </button>
                         </CardActions>
                       </Card>
                     </Grid>
