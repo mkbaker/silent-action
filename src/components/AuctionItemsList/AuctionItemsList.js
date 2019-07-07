@@ -27,8 +27,13 @@ class AuctionItemsList extends Component {
         // console.log('clicked delete, id:', event.target.value )
         this.props.dispatch({
             type: 'DELETE_ITEM',
-            payload: event.target.value
+            payload: [event.target.value]
         })
+        //get updated list
+         this.props.dispatch({
+           type: "GET_AUCTION_ITEMS",
+           payload: this.props.reduxState.setSelectedAuctionReducer.id
+         });
     }
     render() {
         return (
@@ -73,7 +78,7 @@ class AuctionItemsList extends Component {
                             size="small"
                             color="primary"
                             onClick={this.handleDelete}
-                            value={[item.id, item.belongs_to]}
+                            value={item.id}
                           >
                             Delete
                           </button>
