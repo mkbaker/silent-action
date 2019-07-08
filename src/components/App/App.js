@@ -21,6 +21,7 @@ import InfoPage from "../InfoPage/InfoPage";
 import BioPhotoUpload from "../CreateNewAuction/BioPhotoUpload";
 import AddNewItem from "../AddNewItem/AddNewItem";
 import AuctionItemsList from '../AuctionItemsList/AuctionItemsList';
+import EditItem from '../EditItem/EditItem';
 
 import "./App.css";
 
@@ -54,8 +55,17 @@ class App extends Component {
               path="/create-auction/step2"
               component={BioPhotoUpload}
             />
-            <ProtectedRoute exact path="/add-new-item" component={AddNewItem} />
-            <ProtectedRoute exact path="/review" component={AuctionItemsList} />
+            <ProtectedRoute
+              exact
+              path="/add-new-item"
+              component={AddNewItem}
+            />
+            <ProtectedRoute
+              exact
+              path="/review"
+              component={AuctionItemsList}
+            />
+            <ProtectedRoute path="/edit-item/:id" component={EditItem} />
 
             {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the info page instead. */}
@@ -64,10 +74,10 @@ class App extends Component {
             <Route render={() => <h1>404</h1>} />
           </Switch>
 
-          {/* this allows me to view redux state. delete later */}
-          <pre>{JSON.stringify(this.props.reduxState, null, 2)}</pre>
-
           <Footer />
+
+          {/* this allows me to view redux state. delete later */}
+          {/* <pre>{JSON.stringify(this.props.reduxState, null, 2)}</pre> */}
         </div>
       </Router>
     );

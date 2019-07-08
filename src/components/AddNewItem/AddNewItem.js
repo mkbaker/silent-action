@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 // import ImageUploader from "react-images-upload";
 
 //components
@@ -219,4 +220,4 @@ const mapReduxStateToProps = reduxState => ({
   reduxState
 });
 
-export default connect(mapReduxStateToProps)(AddNewItem);
+export default connect(mapReduxStateToProps)(withRouter(AddNewItem));
