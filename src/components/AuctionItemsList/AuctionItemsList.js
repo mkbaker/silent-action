@@ -28,7 +28,7 @@ class AuctionItemsList extends Component {
         this.props.dispatch({
             type: 'DELETE_ITEM',
             payload: [event.target.value]
-        })
+        });
         //get updated list
          this.props.dispatch({
            type: "GET_AUCTION_ITEMS",
