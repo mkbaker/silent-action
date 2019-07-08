@@ -55,7 +55,7 @@ class AuctionItemsList extends Component {
     return (
       <div>
 
-          {/* coniditonally render BeneficiaryHeader so header only shows up on Review and Edit pages */}
+          {/* coniditonally render BeneficiaryHeader so it does not show up at '/add-new-item' */}
         {this.props.location.pathname === '/add-new-item' ? 
         <></> :
         <BeneficiaryHeader />}
@@ -133,7 +133,7 @@ class AuctionItemsList extends Component {
           </Button>
         </div>
         }
-        
+
       </div>
     );
   }

@@ -7,6 +7,7 @@ import getAdminAuctionsSaga from './getAdminAuctionsSaga';
 import addNewItem from './addNewItem';
 import getAuctionItemsSaga from './getAuctionItemsSaga';
 import deleteItemSaga from './deleteItemSaga';
+import selectItemSaga from './selectItemSaga';
 
 
 // rootSaga is the primary saga.
@@ -26,5 +27,6 @@ export default function* rootSaga() {
     addNewItem(),
     getAuctionItemsSaga(), //gets the items associated with an auction and stores them in the auction items reducer 
     deleteItemSaga(), //deletes an item
+    selectItemSaga(), //gets selected item details
   ]);
 }
