@@ -3,7 +3,7 @@ import axios from "axios";
 
 function* addNewContact(action) {
   try {
-    // yield axios.post("/api/add-new-contact", action.payload);
+    yield axios.post("/api/add-new-contact", action.payload)
     console.log('addNewContactSaga hit with:', action.payload)
     // yield put({ type: "CLEAR_CONTACTS" });
     // yield put({ type: "GET_CONTACTS", payload: action.payload.auctionId });

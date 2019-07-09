@@ -17,6 +17,7 @@ const getAuctionItems = require('./routes/getAuctionItems.router');
 const deleteItem = require ('./routes/deleteItem.router');
 const getItemDetail = require('./routes/getItemDetail.router');
 const updateItem = require('./routes/updateItem.router');
+const addNewContact = require('./routes/addNewContact.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -38,6 +39,7 @@ app.use('/api/get-auction-items', getAuctionItems);
 app.use('/api/delete', deleteItem);
 app.use("/api/get-item-detail/", getItemDetail);
 app.use('/api/update-item', updateItem);
+app.use("/api/add-new-contact", addNewContact);
 
 // Serve static files
 app.use(express.static('build'));
