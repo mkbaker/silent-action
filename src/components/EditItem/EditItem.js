@@ -16,12 +16,12 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 
 class EditItem extends Component {
   state = {
-    id: '',
-    name: '',
-    description: '',
-    currentBid: '',
-    photo: '',
-    belongs_to: ''
+    id: "",
+    name: "",
+    description: "",
+    currentBid: "",
+    photo: "",
+    belongs_to: ""
   };
 
   // constructor(props) {
@@ -40,30 +40,49 @@ class EditItem extends Component {
   //   // this.handleClick = this.handleClick.bind(this);
   // }
 
-  componentDidMount(){
-      this.setState({
-      // id: this.props.reduxState.selectedItemReducer.id,
-      name: this.props.reduxState.selectedItemReducer.name,
-      // description: this.props.reduxState.selectedItemReducer.description,
-      currentBid: this.props.reduxState.selectedItemReducer.currentBid,
-      photo: this.props.reduxState.selectedItemReducer.photo,
-      // belongs_to: this.props.reduxState.selectedItemReducer.belongs_to
-    });
-  }
+  // componentDidMount() {
+  //   this.setState({
+  //     id: this.props.reduxState.selectedItemReducer.id,
+  //     name: this.props.reduxState.selectedItemReducer.name,
+  //     description: this.props.reduxState.selectedItemReducer.description,
+  //     currentBid: this.props.reduxState.selectedItemReducer.currentBid,
+  //     photo: this.props.reduxState.selectedItemReducer.photo,
+  //     belongs_to: this.props.reduxState.selectedItemReducer.belongs_to
+  //   });
+  // }
 
   handleBack = () => {
     this.props.history.push("/add-new-item");
   };
 
   //handle input changes
-    handleChangeFor = input => event => {
-      this.setState({
-        ...this.state,
-        [input]: event.target.value
-      });
-      console.log(input, event.target.value)
-    };
+  handleChangeFor = input => event => {
+    this.setState({
+      ...this.props.reduxState.selectedItemReducer,
+      [input]: event.target.value
+    });
+    // console.log(input, event.target.value);
+  };
 
+  //handle "Update Item" button click
+  handleUpdateItem = () => {
+    if (this.state.id) {
+    console.log(this.state);
+    } else {
+      alert('Please enter some information to update.');
+    }
+    //dispatch to saga
+    // this.props.dispatch({
+    //   type: "ADD_NEW_ITEM",
+    //   payload: this.state
+    // });
+    // this.setState({
+    //   pictures: "",
+    //   itemName: "",
+    //   minimumBid: 0,
+    //   itemDescription: ""
+    // });
+  };
   render() {
     return (
       <div className="logInDiv">
@@ -72,15 +91,14 @@ class EditItem extends Component {
         <Grid container>
           <Grid item xs={6}>
             <center>
+              <h2>ID: {this.props.reduxState.selectedItemReducer.id}</h2>
               {/* photo */}
               <div>
                 <TextField
                   id="photoURL"
                   margin="dense"
                   variant="outlined"
-                  placeholder={
-                    this.props.reduxState.selectedItemReducer.photo
-                  }
+                  placeholder={this.props.reduxState.selectedItemReducer.photo}
                   value={this.state.photo || ""}
                   onChange={this.handleChangeFor("photo")}
                   helperText="Photo Url"
@@ -115,9 +133,7 @@ class EditItem extends Component {
                   margin="dense"
                   variant="outlined"
                   helperText="Item Name"
-                  placeholder={
-                    this.props.reduxState.selectedItemReducer.name
-                  }
+                  placeholder={this.props.reduxState.selectedItemReducer.name}
                   value={this.state.name}
                   onChange={this.handleChangeFor("name")}
                 />
@@ -160,8 +176,8 @@ class EditItem extends Component {
 
           <Grid item xs={12}>
             <center>
-              <Button variant="contained" onClick={this.handleAddItem}>
-                Add Item
+              <Button variant="contained" onClick={this.handleUpdateItem}>
+                Update Item
               </Button>
             </center>
           </Grid>

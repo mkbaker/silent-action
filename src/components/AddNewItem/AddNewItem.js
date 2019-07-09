@@ -34,19 +34,19 @@ class AddNewItem extends Component {
 
   //handle "Add Item" button click
   handleAddItem = () => {
-                          // console.log(this.state);
-                          //dispatch to saga
-                          this.props.dispatch({
-                            type: "ADD_NEW_ITEM",
-                            payload: this.state
-                          });
-                          this.setState({
-                            pictures: "",
-                            itemName: "",
-                            minimumBid: 0,
-                            itemDescription: ""
-                          });
-                        };
+     // console.log(this.state);
+     //dispatch to saga
+     this.props.dispatch({
+       type: "ADD_NEW_ITEM",
+       payload: this.state
+     });
+     this.setState({
+       pictures: "",
+       itemName: "",
+       minimumBid: 0,
+       itemDescription: ""
+     });
+   };
 
   //handle "Save and Quit" button click
   handleSave = () => {
