@@ -25,6 +25,10 @@ class AdminHome extends Component {
       type: "GET_ADMIN_AUCTIONS",
       payload: this.props.reduxState.user.id
     });
+    this.props.dispatch({
+      type: "GET_CONTACTS",
+      payload: this.props.reduxState.user.id
+    })
     // console.log(this.props.reduxState.user.id);
   }
 

@@ -18,6 +18,7 @@ const deleteItem = require ('./routes/deleteItem.router');
 const getItemDetail = require('./routes/getItemDetail.router');
 const updateItem = require('./routes/updateItem.router');
 const addNewContact = require('./routes/addNewContact.router');
+const getContacts = require('./routes/getContacts.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -40,6 +41,7 @@ app.use('/api/delete', deleteItem);
 app.use("/api/get-item-detail/", getItemDetail);
 app.use('/api/update-item', updateItem);
 app.use("/api/add-new-contact", addNewContact);
+app.use("/api/get-contacts/", getContacts);
 
 // Serve static files
 app.use(express.static('build'));

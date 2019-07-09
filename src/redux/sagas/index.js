@@ -10,6 +10,7 @@ import deleteItemSaga from './deleteItemSaga';
 import selectItemSaga from './selectItemSaga';
 import updateItemSaga from './updateItemSaga';
 import addNewContactSaga from './addNewContactSaga';
+import getContactsSaga from './getContactsSaga';
 
 
 // rootSaga is the primary saga.
@@ -32,5 +33,6 @@ export default function* rootSaga() {
     selectItemSaga(), //gets selected item details
     updateItemSaga(), //updates item information
     addNewContactSaga(), //adds a new contact 
+    getContactsSaga(), //stores the user's contacts
   ]);
 }
