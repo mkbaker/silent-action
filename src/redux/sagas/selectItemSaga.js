@@ -6,7 +6,7 @@ function* selectItem(action) {
     const response = yield axios.get(
     `/api/get-item-detail/${action.payload}`
    );
-//    console.log(response.data[0]);
+   console.log(response.data[0]);
    yield put({ type: "SET_SELECTED_ITEM", payload: response.data[0] });
   } catch (error) {
     console.log("Error with getting item details:", error);

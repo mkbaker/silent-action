@@ -1,4 +1,4 @@
-const selectedItemReducer = (state = [], action) => {
+const selectedItemReducer = (state = {id:'', name:'', description:'', currentBid:'', photo:'', belongs_to:''}, action) => {
   switch (action.type) {
     case "SET_SELECTED_ITEM":
       return action.payload;

@@ -39,6 +39,10 @@ class AuctionItemsList extends Component {
   };
 
   handleEdit = event => {
+       this.props.dispatch({
+         type: "SELECT_ITEM",
+         payload: event.target.value
+       });
     this.props.history.push("/edit-item/" + event.target.value);
   };
 

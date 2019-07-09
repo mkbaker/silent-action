@@ -22,14 +22,6 @@ class AddNewItem extends Component {
     itemDescription: "",
     auctionId: this.props.reduxState.setSelectedAuctionReducer.id
   };
-  
-  //this might change later. getting this info for this.state.addToAuction
-  //  componentDidMount() {
-  //   this.props.dispatch({
-  //     type: "GET_ADMIN_AUCTIONS",
-  //     payload: this.props.reduxState.user.id
-  //   });
-  // }
 
   //handle input changes
   handleChangeFor = input => event => {

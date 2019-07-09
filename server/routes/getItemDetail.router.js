@@ -10,7 +10,7 @@ router.get("/:id", (req, res) => {
         WHERE "id" = $1;`, [req.params.id]
   )
  .then(result => {
-     console.log(result.rows);
+    //  console.log(result.rows);
    res.send(result.rows);
     })
     .catch(err => {
