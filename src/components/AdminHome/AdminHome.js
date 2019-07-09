@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import AddNewContact from '../AddNewContact/AddNewContact';
 import NameAndDate from '../CreateNewAuction/NameAndDate';
 import ViewAuctions from '../ViewAuctions/ViewAuctions';
+import BeneficiaryHeader from '../BeneficiaryHeader/BeneficiaryHeader';
 
 
 
@@ -50,7 +51,7 @@ class AdminHome extends Component {
               <Paper style={gridBox}>
                 <center>
                   <h3>{this.props.reduxState.setSelectedAuctionReducer.auction_name}</h3>
-                 
+                 <BeneficiaryHeader /> 
                 </center>
               </Paper>
             </Grid>

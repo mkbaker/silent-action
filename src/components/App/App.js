@@ -22,6 +22,7 @@ import BioPhotoUpload from "../CreateNewAuction/BioPhotoUpload";
 import AddNewItem from "../AddNewItem/AddNewItem";
 import AuctionItemsList from '../AuctionItemsList/AuctionItemsList';
 import EditItem from '../EditItem/EditItem';
+import ViewContacts from '../ViewContacts/ViewContacts';
 
 import "./App.css";
 
@@ -66,6 +67,8 @@ class App extends Component {
               component={AuctionItemsList}
             />
             <ProtectedRoute path="/edit-item/:id" component={EditItem} />
+
+            <ProtectedRoute path="/view-contacts" component={ViewContacts} />
 
             {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the info page instead. */}

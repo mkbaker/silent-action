@@ -9,6 +9,7 @@ import getAuctionItemsSaga from './getAuctionItemsSaga';
 import deleteItemSaga from './deleteItemSaga';
 import selectItemSaga from './selectItemSaga';
 import updateItemSaga from './updateItemSaga';
+import addNewContactSaga from './addNewContactSaga';
 
 
 // rootSaga is the primary saga.
@@ -30,5 +31,6 @@ export default function* rootSaga() {
     deleteItemSaga(), //deletes an item
     selectItemSaga(), //gets selected item details
     updateItemSaga(), //updates item information
+    addNewContactSaga(), //adds a new contact 
   ]);
 }
