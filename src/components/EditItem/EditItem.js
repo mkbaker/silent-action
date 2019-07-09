@@ -72,10 +72,10 @@ class EditItem extends Component {
       alert('Please enter some information to update.');
     }
     //dispatch to saga
-    // this.props.dispatch({
-    //   type: "ADD_NEW_ITEM",
-    //   payload: this.state
-    // });
+    this.props.dispatch({
+      type: "UPDATE_ITEM",
+      payload: this.state
+    });
     // this.setState({
     //   pictures: "",
     //   itemName: "",
