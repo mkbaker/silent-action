@@ -8,6 +8,7 @@ import setSelectedAuctionReducer from './setSelectedAuctionReducer';
 import setAuctionItemsReducer from './setAuctionItemsReducer';
 import selectedItemReducer from './selectedItemReducer';
 import setContactsReducer from './setContactsReducer';
+import setUserAuctionsReducer from './setUserAuctionsReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   setAuctionItemsReducer, //stores the items associated with selected auction
   selectedItemReducer, //stores the info of the currently selected item
   setContactsReducer, //stores the user's contacts
+  setUserAuctionsReducer, //stores the auctions a user can access
 });
 
 export default rootReducer;
