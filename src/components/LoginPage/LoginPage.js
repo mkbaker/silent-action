@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './LoginPage.css';
 
 //material-ui
 import TextField from "@material-ui/core/TextField/TextField";

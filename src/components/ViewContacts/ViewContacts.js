@@ -24,19 +24,14 @@ class ViewContacts extends Component {
     return (
       <div>
         <ul>
-          {/* {this.props.reduxState.adminAuctionsReducer.map(auction => (
-            <li key={auction.id}>
-              <Link
-                component={RouterLink}
-                to="/add-new-item"
-                value={auction.id}
-                onClick={this.handleLink(auction)}
-              >
-                {auction.auction_name}
-              </Link> 
-            </li> */}
-          {/* ))} */}
-          hi 
+          {this.props.reduxState.setContactsReducer.map(contact => (
+            <li key={contact.id}>
+             {contact.firstname + ' ' + contact.lastname}
+             {/* This button is not functional yet */}
+             <button>Send Invite</button>
+            </li> 
+          ))}
+          
         </ul>
       </div>
     );

@@ -1,11 +1,12 @@
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Roboto', sans-serif;
     margin: 0px;
 }
 
 .alert {
-    background-color: #ff4545;
-    margin: 50px;
+    background-color: #fe4a49;
+    margin: 40px;
+    padding: 10px;
 }
 
 /* form {
@@ -72,7 +73,7 @@ input {
     border: 2px solid black;
 }
 
-.beneficiaryHeaderDiv{
+.beneficiaryHeaderDiv {
     padding: 10px;
     margin-bottom: 10px;
 }
