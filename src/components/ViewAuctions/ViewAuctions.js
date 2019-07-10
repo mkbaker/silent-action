@@ -5,13 +5,6 @@ import {Link as RouterLink } from 'react-router-dom';
 
 
 class ViewAuctions extends Component {
- 
-
-    //moved this code to AdminHome.js
-//   componentDidMount() {
-//     this.props.dispatch({ type: "GET_ADMIN_AUCTIONS", payload: this.props.reduxState.user.id });
-//     console.log(this.props.reduxState.user.id);
-//   }
 
 //sets selected auction in a reducer to access at /add-new-item
 handleLink = (auction) => (event) => {
@@ -48,8 +41,8 @@ handleLink = (auction) => (event) => {
           {this.props.reduxState.setUserAuctionsReducer.map(auction => (
             <li key={auction.id}>
               <Link
-                // component={RouterLink}
-                // to='/add-new-item'
+                component={RouterLink}
+                to='/view'
                 value={auction.id}
                 onClick={this.handleLink(auction)}
               >

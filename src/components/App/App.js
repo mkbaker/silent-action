@@ -82,6 +82,7 @@ class App extends Component {
             <>
             {/* routes available to user */}
             <ProtectedRoute exact path="/home" component={UserHome}/>
+            <ProtectedRoute exact path="/view/" component={AuctionItemsList} />
             </>}
           </Switch>
 

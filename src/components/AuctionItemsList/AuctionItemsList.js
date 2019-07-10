@@ -59,7 +59,7 @@ class AuctionItemsList extends Component {
     return (
       <div>
 
-          {/* coniditonally render BeneficiaryHeader so it does not show up at '/add-new-item' */}
+        {/* coniditonally render BeneficiaryHeader so it does not show up at '/add-new-item' */}
         {this.props.location.pathname === '/add-new-item' ? 
         <></> :
         <BeneficiaryHeader />}
@@ -78,7 +78,11 @@ class AuctionItemsList extends Component {
                       image={item.photo}
                     />
                     <CardContent>
-                      <Typography gutterBottom variant="h5" component="h2">
+                      <Typography
+                        gutterBottom
+                        variant="h5"
+                        component="h2"
+                      >
                         {item.name}, Current Bid: ${item.currentBid}
                       </Typography>
                       <Typography
@@ -90,34 +94,60 @@ class AuctionItemsList extends Component {
                       </Typography>
                     </CardContent>
                   </CardActionArea>
-                  <CardActions>
-                    <button
-                      variant="outlined"
-                      size="small"
-                      color="primary"
-                      onClick={this.handleDelete}
-                      value={item.id}
-                    >
-                      Delete
-                    </button>
-                    <button
-                      variant="outlined"
-                      size="small"
-                      color="primary"
-                      onClick={this.handleEdit}
-                      value={item.id}
-                    >
-                      Edit
-                    </button>
-                  </CardActions>
+
+                  {/* conditionally render buttons for admin */}
+                  {this.props.reduxState.user.is_admin ? (
+                    <CardActions>
+                      <button
+                        variant="outlined"
+                        size="small"
+                        color="primary"
+                        onClick={this.handleDelete}
+                        value={item.id}
+                      >
+                        Delete
+                      </button>
+                      <button
+                        variant="outlined"
+                        size="small"
+                        color="primary"
+                        onClick={this.handleEdit}
+                        value={item.id}
+                      >
+                        Edit
+                      </button>
+                    </CardActions>
+                  ) : (
+                    // renders for user
+                    <CardActions>
+                      <button
+                        variant="outlined"
+                        size="small"
+                        color="primary"
+                        onClick={this.handleQuickBid}
+                        value={item.id}
+                      >
+                        Quick Bid
+                      </button>
+                      <button
+                        variant="outlined"
+                        size="small"
+                        color="primary"
+                        onClick={this.handleView}
+                        value={item.id}
+                      >
+                        Detail
+                      </button>
+                    </CardActions>
+                  )}
                 </Card>
               </Grid>
             );
           })}
         </Grid>
 
-        {/* conditionally renders these buttons so they don't appear at route '/add-new-item'*/}
-        {this.props.location.pathname === '/add-new-item' ?  
+        {/* conditionally renders these buttons so they don't appear at route '/add-new-item' or '/view'*/}
+        {this.props.location.pathname === '/add-new-item' || '/view' ?  
         <></> 
         :
         <div>
