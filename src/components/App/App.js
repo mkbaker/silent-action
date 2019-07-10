@@ -20,9 +20,9 @@ import AdminHome from "../AdminHome/AdminHome";
 import InfoPage from "../InfoPage/InfoPage";
 import BioPhotoUpload from "../CreateNewAuction/BioPhotoUpload";
 import AddNewItem from "../AddNewItem/AddNewItem";
-import AuctionItemsList from '../AuctionItemsList/AuctionItemsList';
-import EditItem from '../EditItem/EditItem';
-import ViewContacts from '../ViewContacts/ViewContacts';
+import AuctionItemsList from "../AuctionItemsList/AuctionItemsList";
+import EditItem from "../EditItem/EditItem";
+import ViewContacts from "../ViewContacts/ViewContacts";
 
 import "./App.css";
 
@@ -50,22 +50,20 @@ class App extends Component {
             Visiting localhost:3000/home will show the AdminHome if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the 'Login' or 'Register' page.
             Even though it seems like they are different pages, the user is always on localhost:3000/home */}
+
+            {/* Conditionally render which pages are available based on whether user is an admin */}
+            {this.props.reduxState.user.is_admin
+              ? 
+              <>
+              {/* routes available to admin */}
             <ProtectedRoute exact path="/home" component={AdminHome} />
             <ProtectedRoute
               exact
               path="/create-auction/step2"
               component={BioPhotoUpload}
             />
-            <ProtectedRoute
-              exact
-              path="/add-new-item"
-              component={AddNewItem}
-            />
-            <ProtectedRoute
-              exact
-              path="/review"
-              component={AuctionItemsList}
-            />
+            <ProtectedRoute exact path="/add-new-item" component={AddNewItem} />
+            <ProtectedRoute exact path="/review" component={AuctionItemsList} />
             <ProtectedRoute path="/edit-item/:id" component={EditItem} />
 
             <ProtectedRoute path="/view-contacts" component={ViewContacts} />
@@ -75,12 +73,18 @@ class App extends Component {
             <ProtectedRoute exact path="/info" component={InfoPage} />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
+            </>
+            :
+            <>
+            {/* routes available to user */}
+            <ProtectedRoute exact path="/home" component={InfoPage}/>
+            </>}
           </Switch>
 
           <Footer />
 
           {/* this allows me to view redux state. delete later */}
-          {/* <pre>{JSON.stringify(this.props.reduxState, null, 2)}</pre> */}
+          <pre>{JSON.stringify(this.props.reduxState, null, 2)}</pre>
         </div>
       </Router>
     );
