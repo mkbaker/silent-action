@@ -25,6 +25,9 @@ handleLink = (auction) => (event) => {
   render() {
     return (
       <div>
+        {/* what renders is based on is_admin status */}
+        {this.props.reduxState.user.is_admin ? 
+        // renders for admin
         <ul>
           {this.props.reduxState.adminAuctionsReducer.map(auction => (
             <li key={auction.id}>
@@ -39,6 +42,23 @@ handleLink = (auction) => (event) => {
             </li>
           ))}
         </ul>
+        :
+        // renders for user
+        <ul>
+          {this.props.reduxState.setUserAuctionsReducer.map(auction => (
+            <li key={auction.id}>
+              <Link
+                // component={RouterLink}
+                // to='/add-new-item'
+                value={auction.id}
+                onClick={this.handleLink(auction)}
+              >
+                {auction.auction_name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        }
       </div>
     );
   }
