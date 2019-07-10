@@ -26,6 +26,7 @@ import ViewContacts from "../ViewContacts/ViewContacts";
 
 //user routes
 import UserHome from "../UserHome/UserHome";
+import ItemDetail from "../ItemDetail/ItemDetail";
 
 
 import "./App.css";
@@ -56,34 +57,56 @@ class App extends Component {
             Even though it seems like they are different pages, the user is always on localhost:3000/home */}
 
             {/* Conditionally render which pages are available based on whether user is an admin */}
-            {this.props.reduxState.user.is_admin
-              ? 
+            {this.props.reduxState.user.is_admin ? (
               <>
-              {/* routes available to admin */}
-            <ProtectedRoute exact path="/home" component={AdminHome} />
-            <ProtectedRoute
-              exact
-              path="/create-auction/step2"
-              component={BioPhotoUpload}
-            />
-            <ProtectedRoute exact path="/add-new-item" component={AddNewItem} />
-            <ProtectedRoute exact path="/review" component={AuctionItemsList} />
-            <ProtectedRoute path="/edit-item/:id" component={EditItem} />
+                {/* routes available to admin */}
+                <ProtectedRoute exact path="/home" component={AdminHome} />
+                <ProtectedRoute
+                  exact
+                  path="/create-auction/step2"
+                  component={BioPhotoUpload}
+                />
+                <ProtectedRoute
+                  exact
+                  path="/add-new-item"
+                  component={AddNewItem}
+                />
+                <ProtectedRoute
+                  exact
+                  path="/review"
+                  component={AuctionItemsList}
+                />
+                <ProtectedRoute
+                  path="/edit-item/:id"
+                  component={EditItem}
+                />
 
-            <ProtectedRoute path="/view-contacts" component={ViewContacts} />
+                <ProtectedRoute
+                  path="/view-contacts"
+                  component={ViewContacts}
+                />
 
-            {/* This works the same as the other protected route, except that if the user is logged in,
+                {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the info page instead. */}
-            <ProtectedRoute exact path="/info" component={InfoPage} />
-            {/* If none of the other routes matched, we will show a 404. */}
-            <Route render={() => <h1>404</h1>} />
-            </>
-            :
-            <>
-            {/* routes available to user */}
-            <ProtectedRoute exact path="/home" component={UserHome}/>
-            <ProtectedRoute exact path="/view/" component={AuctionItemsList} />
-            </>}
+                <ProtectedRoute exact path="/info" component={InfoPage} />
+                {/* If none of the other routes matched, we will show a 404. */}
+                <Route render={() => <h1>404</h1>} />
+              </>
+            ) : (
+              <>
+                {/* routes available to user */}
+                <ProtectedRoute exact path="/home" component={UserHome} />
+                <ProtectedRoute
+                  exact
+                  path="/view/"
+                  component={AuctionItemsList}
+                />
+                <ProtectedRoute
+                  path="/item-detail/:id"
+                  component={ItemDetail}
+                />
+              </>
+            )}
           </Switch>
 
           <Footer />

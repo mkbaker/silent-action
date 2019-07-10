@@ -39,14 +39,22 @@ class AuctionItemsList extends Component {
   };
 
   handleEdit = event => {
-       this.props.dispatch({
-         type: "SELECT_ITEM",
-         payload: event.target.value
-       });
+    this.props.dispatch({
+      type: "SELECT_ITEM",
+      payload: event.target.value
+    });
     this.props.history.push("/edit-item/" + event.target.value);
   };
 
-  //handle back button 
+  handleDetail = event => {
+    this.props.dispatch({
+      type: "SELECT_ITEM",
+      payload: event.target.value
+    });
+    this.props.history.push("/item-detail/" + event.target.value);
+  };
+
+  //handle back button
   handleBack = event => {
     this.props.history.push("/add-new-item");
   };
@@ -58,11 +66,12 @@ class AuctionItemsList extends Component {
   render() {
     return (
       <div>
-
         {/* coniditonally render BeneficiaryHeader so it does not show up at '/add-new-item' */}
-        {this.props.location.pathname === '/add-new-item' ? 
-        <></> :
-        <BeneficiaryHeader />}
+        {this.props.location.pathname === "/add-new-item" ? (
+          <></>
+        ) : (
+          <BeneficiaryHeader />
+        )}
 
         {/* maps each item on a card */}
         <Grid container spacing={2}>
@@ -78,11 +87,7 @@ class AuctionItemsList extends Component {
                       image={item.photo}
                     />
                     <CardContent>
-                      <Typography
-                        gutterBottom
-                        variant="h5"
-                        component="h2"
-                      >
+                      <Typography gutterBottom variant="h5" component="h2">
                         {item.name}, Current Bid: ${item.currentBid}
                       </Typography>
                       <Typography
@@ -133,7 +138,7 @@ class AuctionItemsList extends Component {
                         variant="outlined"
                         size="small"
                         color="primary"
-                        onClick={this.handleView}
+                        onClick={this.handleDetail}
                         value={item.id}
                       >
                         Detail
@@ -147,27 +152,26 @@ class AuctionItemsList extends Component {
         </Grid>
 
         {/* conditionally renders these buttons so they don't appear at route '/add-new-item' or '/view'*/}
-        {this.props.location.pathname === '/add-new-item' || '/view' ?  
-        <></> 
-        :
-        <div>
-          <Button
-            className="addItemButton"
-            variant="contained"
-            onClick={this.handleBack}
-          >
-            Back
-          </Button>
-          <Button
-            className="finishButton"
-            variant="contained"
-            onClick={this.handleFinish}
-          >
-            Finish
-          </Button>
-        </div>
-        }
-
+        {this.props.location.pathname === "/add-new-item" || "/view" ? (
+          <></>
+        ) : (
+          <div>
+            <Button
+              className="addItemButton"
+              variant="contained"
+              onClick={this.handleBack}
+            >
+              Back
+            </Button>
+            <Button
+              className="finishButton"
+              variant="contained"
+              onClick={this.handleFinish}
+            >
+              Finish
+            </Button>
+          </div>
+        )}
       </div>
     );
   }

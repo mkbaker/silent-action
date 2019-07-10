@@ -16,4 +16,5 @@ function* selectItem(action) {
 function* selectItemSaga() {
   yield takeEvery("SELECT_ITEM", selectItem);
 }
+
 export default selectItemSaga;

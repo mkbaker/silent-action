@@ -59,7 +59,6 @@ class EditItem extends Component {
   handleChangeFor = input => event => {
     {this.state.id === '' ? 
     this.setState({
-      // this only allows me to update one thing at a time and then changes everything else back to reduxState
       ...this.props.reduxState.selectedItemReducer,
       [input]: event.target.value
     }) 
