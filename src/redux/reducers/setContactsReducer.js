@@ -4,6 +4,8 @@ const setContactsReducer = (state = [], action) => {
       return action.payload;
     case "CLEAR_CONTACTS":
       return [];
+    case 'LOGOUT' :
+      return [];
     default:
       return state;
   }

@@ -2,6 +2,15 @@ const selectedItemReducer = (state = {id:'', name:'', description:'', currentBid
   switch (action.type) {
     case "SET_SELECTED_ITEM":
       return action.payload;
+    case 'LOGOUT' :
+      return {
+        id: "",
+        name: "",
+        description: "",
+        currentBid: "",
+        photo: "",
+        belongs_to: ""
+      };
     default:
       return state;
   }

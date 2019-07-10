@@ -11,6 +11,7 @@ import selectItemSaga from './selectItemSaga';
 import updateItemSaga from './updateItemSaga';
 import addNewContactSaga from './addNewContactSaga';
 import getContactsSaga from './getContactsSaga';
+import getUserAuctionsSaga from './getUserAuctionsSaga';
 
 
 // rootSaga is the primary saga.
@@ -34,5 +35,6 @@ export default function* rootSaga() {
     updateItemSaga(), //updates item information
     addNewContactSaga(), //adds a new contact 
     getContactsSaga(), //stores the user's contacts
+    getUserAuctionsSaga(), //gets the auctions the user has access to
   ]);
 }

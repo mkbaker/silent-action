@@ -4,6 +4,8 @@ const setAuctionItemsReducer = (state = [], action) => {
       return action.payload;
     case "CLEAR_ITEMS":
         return [];
+    case 'LOGOUT' :
+      return [];
     default:
       return state;
   }

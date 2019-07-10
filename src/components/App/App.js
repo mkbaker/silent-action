@@ -14,7 +14,7 @@ import Footer from "../Footer/Footer";
 //ProtectedRoute
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
-//routes
+//admin routes
 import AboutPage from "../AboutPage/AboutPage";
 import AdminHome from "../AdminHome/AdminHome";
 import InfoPage from "../InfoPage/InfoPage";
@@ -23,6 +23,10 @@ import AddNewItem from "../AddNewItem/AddNewItem";
 import AuctionItemsList from "../AuctionItemsList/AuctionItemsList";
 import EditItem from "../EditItem/EditItem";
 import ViewContacts from "../ViewContacts/ViewContacts";
+
+//user routes
+import UserHome from "../UserHome/UserHome";
+
 
 import "./App.css";
 
@@ -77,7 +81,7 @@ class App extends Component {
             :
             <>
             {/* routes available to user */}
-            <ProtectedRoute exact path="/home" component={InfoPage}/>
+            <ProtectedRoute exact path="/home" component={UserHome}/>
             </>}
           </Switch>
 
