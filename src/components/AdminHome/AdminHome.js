@@ -12,6 +12,7 @@ import BeneficiaryHeader from '../BeneficiaryHeader/BeneficiaryHeader';
 //material-ui
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
+import Link from "@material-ui/core/Link";
 
 //defines height for grid components
 const gridBox = {
@@ -19,6 +20,12 @@ const gridBox = {
 }
 
 class AdminHome extends Component {
+
+  handleUnselectAuction = () => {
+    this.props.dispatch({
+      type: "UNSELECT_AUCTION"
+    })
+  }
 
   componentDidMount() {
     this.props.dispatch({
@@ -37,7 +44,6 @@ class AdminHome extends Component {
       <div className="adminHomeContainerDiv">
         <h1>Welcome back, {this.props.user.firstname}. </h1>
         <Grid container spacing={2}>
-
           {/* left box: view past auctions */}
           <Grid item sm={4}>
             <Paper style={gridBox}>
@@ -54,8 +60,18 @@ class AdminHome extends Component {
             <Grid item sm={4}>
               <Paper style={gridBox}>
                 <center>
-                  <h3>{this.props.reduxState.setSelectedAuctionReducer.auction_name}</h3>
-                 <BeneficiaryHeader /> 
+                  <h3>
+                    {
+                      this.props.reduxState.setSelectedAuctionReducer
+                        .auction_name
+                    }
+                  </h3>
+                  <BeneficiaryHeader />
+                </center>
+                
+                {/* link switches box to create new auction */}
+                <center>
+                  <Link onClick={this.handleUnselectAuction}>Create a new auction</Link>
                 </center>
               </Paper>
             </Grid>

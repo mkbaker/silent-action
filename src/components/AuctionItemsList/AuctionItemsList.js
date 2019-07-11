@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import '../App/App.css';
+import './AuctionItemsList.css';
 
 //components
 import BeneficiaryHeader from '../BeneficiaryHeader/BeneficiaryHeader';
@@ -9,7 +10,7 @@ import BeneficiaryHeader from '../BeneficiaryHeader/BeneficiaryHeader';
 //material-ui
 import Grid from '@material-ui/core/Grid';
 import Card from "@material-ui/core/Card";
-// import Paper from "@material-ui/core/Paper";
+import Paper from "@material-ui/core/Paper";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
@@ -70,7 +71,14 @@ class AuctionItemsList extends Component {
         {this.props.location.pathname === "/add-new-item" ? (
           <></>
         ) : (
-          <BeneficiaryHeader />
+          <div className="beneficiaryDiv">
+            <Paper className="beneficiaryContent">
+              <h2 className="beneficiaryTitle">
+              {this.props.reduxState.setSelectedAuctionReducer.auction_name}
+              </h2>
+              <BeneficiaryHeader />
+            </Paper>
+          </div>
         )}
 
         {/* maps each item on a card */}

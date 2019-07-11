@@ -17,8 +17,9 @@ class UserHome extends Component {
         return (
           <div className="userHomeContainerDiv">
             <h2>
-              Welcome back, {this.props.reduxState.user.firstname}!
+              Welcome, {this.props.reduxState.user.firstname}!
             </h2>
+            <h4>You've been invited to participate in these auctions. Click on one to get started!</h4>
             <ViewAuctions />
 
 

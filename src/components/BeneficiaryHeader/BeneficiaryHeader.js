@@ -3,13 +3,13 @@ import { connect } from "react-redux";
 import "../App/App.css";
 
 //material-ui
-import Paper from "@material-ui/core/Paper";
+// import Paper from "@material-ui/core/Paper";
 
 class BeneficiaryHeader extends Component {
     render() {
         return (
           <div>
-            <Paper className="beneficiaryHeaderDiv">
+            {/* <Paper className="beneficiaryHeaderDiv"> */}
               <img
                 className="profileImage"
                 src={
@@ -24,7 +24,7 @@ class BeneficiaryHeader extends Component {
               <div>
                 {this.props.reduxState.setSelectedAuctionReducer.bio}
               </div>
-            </Paper>
+            {/* </Paper> */}
           </div>
         );
     }
