@@ -45,7 +45,7 @@ class LoginPage extends Component {
         )}
 
         <center>
-          <form>
+          <form onSubmit={this.login}>
             <Paper className="logInDiv">
               <h1>Login</h1>
 
@@ -72,7 +72,7 @@ class LoginPage extends Component {
               </div>
 
               <div>
-                <Button variant="contained" onClick={this.login}>
+                <Button type="submit" variant="contained" onClick={this.login}>
                   Log In
                 </Button>
               </div>
