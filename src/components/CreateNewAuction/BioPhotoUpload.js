@@ -7,6 +7,9 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 
+//SweetAlert2
+import Swal from 'sweetalert2';
+
 class BioPhotoUpload extends Component {
   state = {
     bio: "",
@@ -34,9 +37,11 @@ class BioPhotoUpload extends Component {
       });
       this.props.history.push("/add-new-item");
     } else {
-      alert(
-        "Please make sure you've entered all information before continuing."
-      );
+        Swal.fire({
+          type: "error",
+          text:
+            "Please make sure you've entered all information before continuing."
+        });
     }
   };
 
@@ -46,7 +51,7 @@ class BioPhotoUpload extends Component {
       <div className="logInDiv">
         <Paper>
           <center>
-            <h1>[New Auction Name]</h1>
+            <h1>{this.props.reduxState.newAuctionReducer.auctionName}</h1>
           </center>
 
           <TextField

@@ -6,6 +6,9 @@ import { withRouter } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
+//SweetAlert2
+import Swal from 'sweetalert2';
+
 class NameAndDate extends Component {
   state = {
     auctionName: "",
@@ -51,9 +54,10 @@ class NameAndDate extends Component {
         })
         this.props.history.push("/create-auction/step2");
     } else {
-      alert(
-        "Please make sure you've entered all information before continuing."
-      );
+      Swal.fire({
+        type: 'error',
+        text: "Please make sure you've entered all information before continuing."
+      });
     }
   };
 

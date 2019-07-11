@@ -14,6 +14,9 @@ import Button from "@material-ui/core/Button";
 // import Link from "@material-ui/core/Link";
 import InputAdornment from "@material-ui/core/InputAdornment";
 
+//SweetAlert2
+import Swal from 'sweetalert2';
+
 class AddNewItem extends Component {
   state = {
     pictures: '',
@@ -35,6 +38,7 @@ class AddNewItem extends Component {
   //handle "Add Item" button click
   handleAddItem = () => {
      // console.log(this.state);
+     if (this.state.pictures && this.state.itemName && this.state.itemDescription) {
      //dispatch to saga
      this.props.dispatch({
        type: "ADD_NEW_ITEM",
@@ -46,6 +50,12 @@ class AddNewItem extends Component {
        minimumBid: 0,
        itemDescription: ""
      });
+    } else {
+     Swal.fire({
+       type: 'error',
+       text: 'You must enter a photo, name and description for this item.'
+     })
+    }
    };
 
   //handle "Save and Quit" button click
