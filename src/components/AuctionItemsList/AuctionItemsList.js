@@ -62,7 +62,7 @@ class AuctionItemsList extends Component {
 
   //handle finish button
   handleFinish = () => {
-    this.props.history.push("/");
+    this.props.history.push("/view-contacts");
   };
   render() {
     return (
@@ -74,7 +74,10 @@ class AuctionItemsList extends Component {
           <div className="beneficiaryDiv">
             <Paper className="beneficiaryContent">
               <h2 className="beneficiaryTitle">
-              {this.props.reduxState.setSelectedAuctionReducer.auction_name}
+                {
+                  this.props.reduxState.setSelectedAuctionReducer
+                    .auction_name
+                }
               </h2>
               <BeneficiaryHeader />
             </Paper>
@@ -160,26 +163,26 @@ class AuctionItemsList extends Component {
         </Grid>
 
         {/* conditionally renders these buttons so they don't appear at route '/add-new-item' or '/view'*/}
-        {this.props.location.pathname === "/add-new-item" || "/view" ? (
+        {this.props.location.pathname === "/add-new-item" ? (
           <></>
         ) : (
-          <div>
-            <Button
-              className="addItemButton"
-              variant="contained"
-              onClick={this.handleBack}
-            >
-              Back
-            </Button>
-            <Button
-              className="finishButton"
-              variant="contained"
-              onClick={this.handleFinish}
-            >
-              Finish
-            </Button>
-          </div>
-        )}
+            <div className="buttonsDiv">
+                <Button
+                  className="addItemButton"
+                  variant="contained"
+                  onClick={this.handleBack}
+                >
+                  Back
+                </Button> 
+                <Button
+                  className="finishButton"
+                  variant="contained"
+                  onClick={this.handleFinish}
+                >
+                  Finish
+                </Button>
+              </div>
+          )}
       </div>
     );
   }

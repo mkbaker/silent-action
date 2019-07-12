@@ -50,6 +50,11 @@ class AddNewItem extends Component {
        minimumBid: 0,
        itemDescription: ""
      });
+     Swal.fire({
+       type:'success',
+      title: 'Item added!',
+      timer: 1000
+     })
     } else {
      Swal.fire({
        type: 'error',

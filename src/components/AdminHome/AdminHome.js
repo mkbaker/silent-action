@@ -40,6 +40,7 @@ class AdminHome extends Component {
   }
 
   render() {
+    //calculate the total of selected auction's bids
              let totalBids = 0;
              this.props.reduxState.setAuctionItemsReducer.forEach(item => {
                totalBids = totalBids + Number(item.currentBid);

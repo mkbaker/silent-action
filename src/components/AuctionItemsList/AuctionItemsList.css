@@ -9,3 +9,11 @@
 .beneficiaryTitle {
     float: right;
 }
+
+.finishButton {
+    float: right;
+}
+
+.buttonsDiv {
+    margin: 10px;
+}
