@@ -40,63 +40,74 @@ class AdminHome extends Component {
   }
 
   render() {
-    return (
-      <div className="adminHomeContainerDiv">
-        <h1>Welcome back, {this.props.user.firstname}. </h1>
-        <Grid container spacing={2}>
-          {/* left box: view past auctions */}
-          <Grid item sm={4}>
-            <Paper style={gridBox}>
-              <center>
-                <h3>View Auctions</h3>
-              </center>
-              <ViewAuctions />
-            </Paper>
-          </Grid>
+             let totalBids = 0;
+             this.props.reduxState.setAuctionItemsReducer.forEach(item => {
+               totalBids = totalBids + Number(item.currentBid);
+             })
 
-          {/* middle box: create a new auction */}
-          {/* conditionally renders auction detail or create new if setSelectedAuctionReducer is empty */}
-          {this.props.reduxState.setSelectedAuctionReducer.id ? (
-            <Grid item sm={4}>
-              <Paper style={gridBox}>
-                <center>
-                  <h3>
-                    {
-                      this.props.reduxState.setSelectedAuctionReducer
-                        .auction_name
-                    }
-                  </h3>
-                  <BeneficiaryHeader />
-                </center>
-                
-                {/* link switches box to create new auction */}
-                <center>
-                  <Link onClick={this.handleUnselectAuction} >Create a new auction</Link>
-                </center>
-              </Paper>
-            </Grid>
-          ) : (
-            <Grid item sm={4}>
-              <Paper style={gridBox}>
-                <center>
-                  <NameAndDate />
-                </center>
-              </Paper>
-            </Grid>
-          )}
+             return (
+               <div className="adminHomeContainerDiv">
+                 <h1>Welcome back, {this.props.user.firstname}. </h1>
+                 <Grid container spacing={2}>
+                   {/* left box: view past auctions */}
+                   <Grid item sm={4}>
+                     <Paper style={gridBox}>
+                       <center>
+                         <h3>View Auctions</h3>
+                       </center>
+                       <ViewAuctions />
+                     </Paper>
+                   </Grid>
 
-          {/* third box: add new contact  */}
-          <Grid item sm={4}>
-            <Paper style={gridBox}>
-              <center>
-                <AddNewContact />
-              </center>
-            </Paper>
-          </Grid>
-        </Grid>
-      </div>
-    );
-  }
+                   {/* middle box: create a new auction */}
+                   {/* conditionally renders auction detail or create new if setSelectedAuctionReducer is empty */}
+                   {this.props.reduxState.setSelectedAuctionReducer
+                     .id ? (
+                     <Grid item sm={4}>
+                       <Paper style={gridBox}>
+                         <center>
+                           <h3>
+                             {
+                               this.props.reduxState
+                                 .setSelectedAuctionReducer
+                                 .auction_name
+                             }
+                           </h3>
+                           <BeneficiaryHeader />
+                         </center>
+                         <h4>Total raised: ${totalBids}</h4>
+                         {/* link switches box to create new auction */}
+                         <center>
+                           <Link
+                             onClick={this.handleUnselectAuction}
+                           >
+                             Create a new auction
+                           </Link>
+                         </center>
+                       </Paper>
+                     </Grid>
+                   ) : (
+                     <Grid item sm={4}>
+                       <Paper style={gridBox}>
+                         <center>
+                           <NameAndDate />
+                         </center>
+                       </Paper>
+                     </Grid>
+                   )}
+
+                   {/* third box: add new contact  */}
+                   <Grid item sm={4}>
+                     <Paper style={gridBox}>
+                       <center>
+                         <AddNewContact />
+                       </center>
+                     </Paper>
+                   </Grid>
+                 </Grid>
+               </div>
+             );
+           }
 }
 
 // Instead of taking everything from state, we just want the user info.
