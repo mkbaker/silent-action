@@ -9,6 +9,11 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
+import Button from "@material-ui/core/Button";
+
+//SweetAlert2
+import Swal from 'sweetalert2';
 
 
 class ViewContacts extends Component {
@@ -26,10 +31,26 @@ class ViewContacts extends Component {
   //     payload: auction
   //   });
   // };
-
+  handleInvite = () => {
+    Swal.fire({
+      title: 'Invite sent!',
+      type: 'success',
+      showConfirmButton: false,
+      timer: 1000
+    })
+  }
   render() {
     return (
       <div>
+        <Paper>
+          <center>
+            <h2>Invite your friends and family to join your auctions!</h2>
+            <h3>
+              Clicking 'Send Invite' will send an email to your friend and
+              give them access to bid in your auctions.
+            </h3>
+          </center>
+        </Paper>
         <Table>
           <TableHead>
             <TableRow>
@@ -48,7 +69,7 @@ class ViewContacts extends Component {
                 <TableCell>{contact.username}</TableCell>
                 <TableCell>{contact.email}</TableCell>
                 <TableCell>
-                  <button>Send Invite</button>
+                  <Button variant="contained" onClick={this.handleInvite}>Send Invite</Button>
                 </TableCell>
               </TableRow>
             ))}
