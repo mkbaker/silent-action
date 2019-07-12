@@ -71,7 +71,7 @@ class AdminHome extends Component {
                 
                 {/* link switches box to create new auction */}
                 <center>
-                  <Link onClick={this.handleUnselectAuction}>Create a new auction</Link>
+                  <Link onClick={this.handleUnselectAuction} >Create a new auction</Link>
                 </center>
               </Paper>
             </Grid>
