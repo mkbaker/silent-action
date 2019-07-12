@@ -35,9 +35,10 @@ router.put("/bid", (req, res) => {
   // console.log("update bid route hit with req:", req.body)
   pool.query(`
   UPDATE "item"
-  SET "currentBid"=$1
-  WHERE "id"=$2`, 
-  [req.body.newBid, req.body.itemId])
+  SET "currentBid"=$1,
+  "highestBidder"=$2
+  WHERE "id"=$3`, 
+  [req.body.newBid, req.body.userId, req.body.itemId])
   .then(result => {
     console.log(result);
     res.sendStatus(201);

@@ -69,6 +69,11 @@ class ItemDetail extends Component {
                   Current Bid: $
                   {this.props.reduxState.selectedItemReducer.currentBid}
                 </h2>
+                {this.props.reduxState.selectedItemReducer.highestBidder === this.props.reduxState.user.id ? 
+                <h4>You are the highest bidder!</h4>
+                : 
+                <h4>The highest bidder is someone else.</h4>
+                }
                 <div>
                   <TextField
                     id="bidInput"
