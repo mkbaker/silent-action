@@ -4,10 +4,12 @@
 
 .beneficiaryContent {
     padding: 10px 25px;
+    display: flex;
+    flex-wrap: nowrap;
 }
 
-.beneficiaryTitle {
-    float: right;
+.beneficiaryBio {
+    margin-left: 10px;
 }
 
 .finishButton {

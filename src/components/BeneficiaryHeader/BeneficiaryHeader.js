@@ -21,7 +21,7 @@ class BeneficiaryHeader extends Component {
                 width="auto"
               />
 
-              <div>
+              <div className="beneficiaryBio">
                 {this.props.reduxState.setSelectedAuctionReducer.bio}
               </div>
             {/* </Paper> */}

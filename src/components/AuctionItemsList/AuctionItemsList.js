@@ -73,13 +73,25 @@ class AuctionItemsList extends Component {
         ) : (
           <div className="beneficiaryDiv">
             <Paper className="beneficiaryContent">
-              <h2 className="beneficiaryTitle">
-                {
-                  this.props.reduxState.setSelectedAuctionReducer
-                    .auction_name
+              <img
+                className="profileImage"
+                src={
+                  this.props.reduxState.setSelectedAuctionReducer.photo_url
                 }
-              </h2>
-              <BeneficiaryHeader />
+                alt="Beneficiary"
+                height="150px"
+                width="auto"
+              />
+
+              <div className="beneficiaryBio">
+                <h2 className="beneficiaryTitle">
+                  {
+                    this.props.reduxState.setSelectedAuctionReducer
+                      .auction_name
+                  }
+                </h2>
+                {this.props.reduxState.setSelectedAuctionReducer.bio}
+              </div>
             </Paper>
           </div>
         )}
@@ -166,23 +178,23 @@ class AuctionItemsList extends Component {
         {this.props.location.pathname === "/add-new-item" ? (
           <></>
         ) : (
-            <div className="buttonsDiv">
-                <Button
-                  className="addItemButton"
-                  variant="contained"
-                  onClick={this.handleBack}
-                >
-                  Back
-                </Button> 
-                <Button
-                  className="finishButton"
-                  variant="contained"
-                  onClick={this.handleFinish}
-                >
-                  Finish
-                </Button>
-              </div>
-          )}
+          <div className="buttonsDiv">
+            <Button
+              className="addItemButton"
+              variant="contained"
+              onClick={this.handleBack}
+            >
+              Back
+            </Button>
+            <Button
+              className="finishButton"
+              variant="contained"
+              onClick={this.handleFinish}
+            >
+              Finish
+            </Button>
+          </div>
+        )}
       </div>
     );
   }
