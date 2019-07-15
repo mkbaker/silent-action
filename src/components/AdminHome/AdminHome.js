@@ -48,7 +48,9 @@ class AdminHome extends Component {
 
              return (
                <div className="adminHomeContainerDiv">
-                 <h1>Welcome back, {this.props.user.firstname}. </h1>
+                 <h1>
+                   Welcome back, {this.props.user.firstname}.{" "}
+                 </h1>
                  <Grid container spacing={2}>
                    {/* left box: view past auctions */}
                    <Grid item sm={4}>
@@ -75,8 +77,8 @@ class AdminHome extends Component {
                              }
                            </h3>
                            <BeneficiaryHeader />
+                           <h4>Total raised: ${totalBids}</h4>
                          </center>
-                         <h4>Total raised: ${totalBids}</h4>
                          {/* link switches box to create new auction */}
                          <center>
                            <Link

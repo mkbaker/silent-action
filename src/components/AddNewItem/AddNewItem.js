@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-// import ImageUploader from "react-images-upload";
+import DropzoneS3Uploader from "react-dropzone-s3-uploader";
 
 //components
 import AuctionItemsList from '../AuctionItemsList/AuctionItemsList';
+// import S3Uploader from '../S3Uploader/S3Uploader';
 
 //material-ui
 import Grid from "@material-ui/core/Grid";
@@ -19,7 +20,7 @@ import Swal from 'sweetalert2';
 
 class AddNewItem extends Component {
   state = {
-    pictures: '',
+    pictures: "",
     itemName: "",
     minimumBid: 0,
     itemDescription: "",
@@ -29,39 +30,42 @@ class AddNewItem extends Component {
   //handle input changes
   handleChangeFor = input => event => {
     this.setState({
-        ...this.state,
-        [input]: event.target.value
-      }
-    );
+      ...this.state,
+      [input]: event.target.value
+    });
   };
 
   //handle "Add Item" button click
   handleAddItem = () => {
-     // console.log(this.state);
-     if (this.state.pictures && this.state.itemName && this.state.itemDescription) {
-     //dispatch to saga
-     this.props.dispatch({
-       type: "ADD_NEW_ITEM",
-       payload: this.state
-     });
-     this.setState({
-       pictures: "",
-       itemName: "",
-       minimumBid: 0,
-       itemDescription: ""
-     });
-     Swal.fire({
-       type:'success',
-      title: 'Item added!',
-      timer: 1000
-     })
+    // console.log(this.state);
+    if (
+      this.state.pictures &&
+      this.state.itemName &&
+      this.state.itemDescription
+    ) {
+      //dispatch to saga
+      this.props.dispatch({
+        type: "ADD_NEW_ITEM",
+        payload: this.state
+      });
+      this.setState({
+        pictures: "",
+        itemName: "",
+        minimumBid: 0,
+        itemDescription: ""
+      });
+      Swal.fire({
+        type: "success",
+        title: "Item added!",
+        timer: 1000
+      });
     } else {
-     Swal.fire({
-       type: 'error',
-       text: 'You must enter a photo, name and description for this item.'
-     })
+      Swal.fire({
+        type: "error",
+        text: "You must enter a photo, name and description for this item."
+      });
     }
-   };
+  };
 
   //handle "Save and Quit" button click
   handleSave = () => {
@@ -73,15 +77,24 @@ class AddNewItem extends Component {
     this.props.history.push("/review");
   };
 
-  //handles image upload for ImageUploader which is not functional at this time
-  // onDrop = (picture, file) => {
-  //   console.log(file);
-  //   this.setState({
-  //     pictures: picture
-  //   });
-  // };
+  //handles photo upload
+  handleFinishedUpload = info => {
+    console.log("File uploaded with filename", info.filename);
+    console.log("Access it on s3 at", info.fileUrl);
+    this.setState({
+      ...this.state,
+      pictures: info.fileUrl
+    })
+  };
 
   render() {
+    //handles photo upload
+    const uploadOptions = {
+      server: "http://localhost:5000",
+      signingUrlQueryParams: { uploadType: "avatar" }
+    };
+    const s3Url = "https://silentaction.s3.amazonaws.com";
+
     return (
       <div className="logInDiv">
         <Paper>
@@ -96,46 +109,26 @@ class AddNewItem extends Component {
           <Grid container>
             <Grid item xs={6} className="imageUploadDiv">
               <center>
-                {/* Upload Photo */}
-                {/* this does not work */}
-                {/* conditionally render preview based on whether local state has an image
-                NOT WORKING LIKE I"D EXPECT. FIX THIS LATER */}
-                {/* {this.state.pictures ? 
-                <ImageUploader
-                  withIcon={true}
-                  buttonText="Choose image"
-                  onChange={this.onDrop}
-                  imgExtension={[".jpg", ".gif", ".png", ".gif"]}
-                  maxFileSize={5242880}
-                  singleImage={true}
-                  withPreview={false}
-                /> 
-                :  */}
-                {/* //   <ImageUploader */}
-                {/* //     withIcon={true}
-              //     buttonText="Choose image"
-              //     onChange={this.onDrop}
-              //     imgExtension={[".jpg", ".gif", ".png", ".gif"]}
-              //     maxFileSize={5242880}
-              //     singleImage={true}
-              //     withPreview={true}
-              //   /> 
-              // } */}
                 <div>
-                  <TextField
-                    id="photoURL"
-                    margin="dense"
-                    variant="outlined"
-                    placeholder="Photo URL"
-                    value={this.state.pictures}
-                    onChange={this.handleChangeFor("pictures")}
+                  <h5>Upload a Photo</h5>
+                  <DropzoneS3Uploader
+                    onFinish={this.handleFinishedUpload}
+                    s3Url={s3Url}
+                    maxSize={1024 * 1024 * 5}
+                    upload={uploadOptions}
                   />
                 </div>
                 <div>
-                  {this.state.pictures ? 
-                  <img src={this.state.pictures} alt="Your pic here" height="150px" width="150px" />
-                  :
-                  <></>}
+                  {this.state.pictures ? (
+                    <img
+                      src={this.state.pictures}
+                      alt="Your pic here"
+                      height="150px"
+                      width="150px"
+                    />
+                  ) : (
+                    <></>
+                  )}
                 </div>
               </center>
             </Grid>
@@ -197,8 +190,8 @@ class AddNewItem extends Component {
           <center>
             <p>All done adding items?</p>
             <p>
-              Save and quit to save your progress and come back to the
-              auction later.
+              Save and quit to save your progress and come back to the auction
+              later.
             </p>
             <p>
               Review auction to view all items and invite friends to
@@ -212,7 +205,11 @@ class AddNewItem extends Component {
           >
             Save and Quit
           </Button>
-          <Button className="reviewAuctionButton" variant="contained" onClick={this.handleReview}>
+          <Button
+            className="reviewAuctionButton"
+            variant="contained"
+            onClick={this.handleReview}
+          >
             Review Auction
           </Button>
         </div>
@@ -228,3 +225,62 @@ const mapReduxStateToProps = reduxState => ({
 });
 
 export default connect(mapReduxStateToProps)(withRouter(AddNewItem));
+
+
+
+
+
+
+      {
+        /* Upload Photo */
+      }
+      {
+        /* this does not work */
+      }
+      {
+        /* conditionally render preview based on whether local state has an image
+                NOT WORKING LIKE I"D EXPECT. FIX THIS LATER */
+      }
+      {
+        /* {this.state.pictures ? 
+                <ImageUploader
+                  withIcon={true}
+                  buttonText="Choose image"
+                  onChange={this.onDrop}
+                  imgExtension={[".jpg", ".gif", ".png", ".gif"]}
+                  maxFileSize={5242880}
+                  singleImage={true}
+                  withPreview={false}
+                /> 
+                :  */
+      }
+      {
+        /* //   <ImageUploader */
+      }
+      {
+        /* //     withIcon={true}
+              //     buttonText="Choose image"
+              //     onChange={this.onDrop}
+              //     imgExtension={[".jpg", ".gif", ".png", ".gif"]}
+              //     maxFileSize={5242880}
+              //     singleImage={true}
+              //     withPreview={true}
+              //   /> 
+              // } */
+      }
+
+
+      // original photo upload
+
+            {
+              /* <div>
+                  <TextField
+                    id="photoURL"
+                    margin="dense"
+                    variant="outlined"
+                    placeholder="Photo URL"
+                    value={this.state.pictures}
+                    onChange={this.handleChangeFor("pictures")}
+                  />
+                </div> */
+            }

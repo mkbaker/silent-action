@@ -18,7 +18,7 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 //admin routes
 import AboutPage from "../AboutPage/AboutPage";
 import AdminHome from "../AdminHome/AdminHome";
-import InfoPage from "../InfoPage/InfoPage";
+// import InfoPage from "../InfoPage/InfoPage";
 import BioPhotoUpload from "../CreateNewAuction/BioPhotoUpload";
 import AddNewItem from "../AddNewItem/AddNewItem";
 import AuctionItemsList from "../AuctionItemsList/AuctionItemsList";
@@ -114,7 +114,7 @@ class App extends Component {
 
                   {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the info page instead. */}
-                  <ProtectedRoute exact path="/info" component={InfoPage} />
+                  {/* <ProtectedRoute exact path="/info" component={InfoPage} /> */}
                 </>
               ) : (
                 <>

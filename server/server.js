@@ -19,6 +19,7 @@ const getItemDetail = require('./routes/getItemDetail.router');
 const updateItem = require('./routes/updateItem.router');
 const addNewContact = require('./routes/addNewContact.router');
 const getContacts = require('./routes/getContacts.router');
+const UploaderS3Router = require("react-dropzone-s3-uploader/s3router");
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -42,6 +43,17 @@ app.use("/api/get-item-detail/", getItemDetail);
 app.use('/api/update-item', updateItem);
 app.use("/api/add-new-contact", addNewContact);
 app.use("/api/get-contacts/", getContacts);
+
+//s3 photo upload
+app.use(
+  "/s3",
+  UploaderS3Router({
+    bucket: "silentaction", // required
+    region: "us-east-1", // optional
+    headers: { "Access-Control-Allow-Origin": "*" }, // optional
+    ACL: "public-read", // this is the default - set to `public-read` to let anyone view upload
+  })
+);
 
 // Serve static files
 app.use(express.static('build'));
