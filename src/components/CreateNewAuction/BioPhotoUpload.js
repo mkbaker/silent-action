@@ -2,18 +2,21 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
+//components
+import DropzoneS3Uploader from "react-dropzone-s3-uploader";
+
 //material-ui
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 
 //SweetAlert2
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 
 class BioPhotoUpload extends Component {
   state = {
     bio: "",
-    photoUrl: ""
+    photo: ""
   };
 
   handleInputChangeFor = propertyName => event => {
@@ -23,7 +26,7 @@ class BioPhotoUpload extends Component {
   };
 
   handleClick = event => {
-    if (this.state.bio && this.state.photoUrl) {
+    if (this.state.bio && this.state.photo) {
       this.props.dispatch({
         type: "CREATE_AUCTION_STEP_TWO",
         payload: {
@@ -32,21 +35,37 @@ class BioPhotoUpload extends Component {
           startDate: this.props.reduxState.newAuctionReducer.startDate,
           endDate: this.props.reduxState.newAuctionReducer.endDate,
           bio: this.state.bio,
-          photoUrl: this.state.photoUrl
+          photoUrl: this.state.photo
         }
       });
       this.props.history.push("/add-new-item");
     } else {
-        Swal.fire({
-          type: "error",
-          text:
-            "Please make sure you've entered all information before continuing."
-        });
+      Swal.fire({
+        type: "error",
+        text:
+          "Please make sure you've entered all information before continuing."
+      });
     }
   };
 
+  //handles photo upload
+  handleFinishedUpload = info => {
+    console.log("File uploaded with filename", info.filename);
+    console.log("Access it on s3 at", info.fileUrl);
+    this.setState({
+      ...this.state,
+      photo: info.fileUrl
+    });
+  };
 
   render() {
+    //handles photo upload
+    const uploadOptions = {
+      server: "http://localhost:5000",
+      signingUrlQueryParams: { uploadType: "avatar" }
+    };
+    const s3Url = "https://silentaction.s3.amazonaws.com";
+
     return (
       <div className="logInDiv">
         <Paper>
@@ -66,14 +85,35 @@ class BioPhotoUpload extends Component {
             value={this.state.bio}
             onChange={this.handleInputChangeFor("bio")}
           />
-
+          {/* 
           <TextField
             fullWidth
             label="Photo URL"
             variant="outlined"
             value={this.state.photoUrl}
             onChange={this.handleInputChangeFor("photoUrl")}
-          />
+          /> */}
+          {this.state.photo ? (
+            <>
+              <img
+                src={this.state.photo}
+                alt="Your pic here"
+                height="150px"
+                width="150px"
+              />
+              <br />
+              <button onClick={this.handleChangePhoto}>Change Photo</button>
+            </>
+          ) : (
+            <>
+              <DropzoneS3Uploader
+                onFinish={this.handleFinishedUpload}
+                s3Url={s3Url}
+                maxSize={1024 * 1024 * 5}
+                upload={uploadOptions}
+              />
+            </>
+          )}
 
           <center>
             <Button variant="outlined" onClick={this.handleClick}>
@@ -89,6 +129,5 @@ class BioPhotoUpload extends Component {
 const mapReduxStateToProps = reduxState => ({
   reduxState
 });
-
 
 export default connect(mapReduxStateToProps)(withRouter(BioPhotoUpload));
