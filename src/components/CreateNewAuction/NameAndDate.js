@@ -22,25 +22,6 @@ class NameAndDate extends Component {
     });
   };
 
-  // registerUser = event => {
-  //   event.preventDefault();
-
-  //   if (this.state.username && this.state.password) {
-  //     this.props.dispatch({
-  //       type: "REGISTER",
-  //       payload: {
-  //         firstname: this.state.firstname,
-  //         lastname: this.state.lastname,
-  //         email: this.state.email,
-  //         username: this.state.username,
-  //         password: this.state.password
-  //       }
-  //     });
-  //   } else {
-  //     this.props.dispatch({ type: "REGISTRATION_INPUT_ERROR" });
-  //   }
-  // };
-
   handleClick = event => {
     if (this.state.auctionName && this.state.startDate && this.state.endDate) {
       this.props
