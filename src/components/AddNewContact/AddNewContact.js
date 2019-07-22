@@ -28,7 +28,6 @@ class AddNewContact extends Component {
 
   //handle "Add Contact" button click
   handleAddContact = () => {
-    // console.log(this.state);
     // dispatch to saga
     this.props.dispatch({
       type: "ADD_NEW_CONTACT",
