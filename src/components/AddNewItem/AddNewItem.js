@@ -1,18 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import DropzoneS3Uploader from "react-dropzone-s3-uploader";
+
 
 //components
 import AuctionItemsList from '../AuctionItemsList/AuctionItemsList';
-// import S3Uploader from '../S3Uploader/S3Uploader';
+import DropzoneS3Uploader from "react-dropzone-s3-uploader";
 
 //material-ui
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-// import Link from "@material-ui/core/Link";
 import InputAdornment from "@material-ui/core/InputAdornment";
 
 //SweetAlert2
@@ -37,7 +36,6 @@ class AddNewItem extends Component {
 
   //handle "Add Item" button click
   handleAddItem = () => {
-    // console.log(this.state);
     if (
       this.state.pictures &&
       this.state.itemName &&
