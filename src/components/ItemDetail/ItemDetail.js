@@ -27,7 +27,6 @@ class ItemDetail extends Component {
     }
 
     handleAddBid = () => {
-        // console.log(this.state);
         if(this.state.newBid > this.props.reduxState.selectedItemReducer.currentBid) {
             this.props.dispatch({
                 type: 'ADD_BID',

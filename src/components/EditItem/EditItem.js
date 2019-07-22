@@ -71,11 +71,11 @@ class EditItem extends Component {
            ...this.state,
             photo: info.fileUrl
          });
-       //dispatch to saga
-      //  this.props.dispatch({
-      //      type:"UPDATE_ITEM",
-      //      payload: this.state
-      //    });
+      //  dispatch to saga
+       this.props.dispatch({
+           type:"UPDATE_ITEM",
+           payload: this.state
+         });
      };
 
   render() {
