@@ -3,15 +3,14 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 //components
-import BeneficiaryHeader from '../BeneficiaryHeader/BeneficiaryHeader';
-
+import BeneficiaryHeader from "../BeneficiaryHeader/BeneficiaryHeader";
+import DropzoneS3Uploader from "react-dropzone-s3-uploader";
 
 //material-ui
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-// import Link from "@material-ui/core/Link";
 import InputAdornment from "@material-ui/core/InputAdornment";
 
 class EditItem extends Component {
@@ -24,74 +23,69 @@ class EditItem extends Component {
     belongs_to: ""
   };
 
-  // constructor(props) {
-  //   //super(props) is to access this.props inside constructor
-  //   super(props);
-  //   // Don't call this.setState() here!
-  //     this.state = ({
-  //     id: this.props.reduxState.selectedItemReducer.id,
-  //     name: this.props.reduxState.selectedItemReducer.name,
-  //     description: this.props.reduxState.selectedItemReducer.description,
-  //     currentBid: this.props.reduxState.selectedItemReducer.currentBid,
-  //     photo: this.props.reduxState.selectedItemReducer.photo,
-  //     belongs_to: this.props.reduxState.selectedItemReducer.belongs_to
-  //   });
-  //   // This binding is necessary to make `this` work in the callback
-  //   // this.handleClick = this.handleClick.bind(this);
-  // }
-
-  // componentDidMount() {
-  //   this.setState({
-  //     id: this.props.reduxState.selectedItemReducer.id,
-  //     name: this.props.reduxState.selectedItemReducer.name,
-  //     description: this.props.reduxState.selectedItemReducer.description,
-  //     currentBid: this.props.reduxState.selectedItemReducer.currentBid,
-  //     photo: this.props.reduxState.selectedItemReducer.photo,
-  //     belongs_to: this.props.reduxState.selectedItemReducer.belongs_to
-  //   });
-  // }
-
   handleBack = () => {
     this.props.history.push("/add-new-item");
   };
 
   //handle input changes
   handleChangeFor = input => event => {
-    {this.state.id === '' ? 
-    this.setState({
-      ...this.props.reduxState.selectedItemReducer,
-      [input]: event.target.value
-    }) 
-    : 
-    this.setState({
-      ...this.state,
-      [input]: event.target.value
-    })
-    // console.log(input, event.target.value);
-  }};
+    {
+      this.state.id === ""
+        ? this.setState({
+            ...this.props.reduxState.selectedItemReducer,
+            [input]: event.target.value
+          })
+        : this.setState({
+            ...this.state,
+            [input]: event.target.value
+          });
+    }
+  };
 
   //handle "Update Item" button click
   handleUpdateItem = () => {
     if (this.state.id) {
-    console.log(this.state);
+      console.log(this.state);
     } else {
-      alert('Please enter some information to update.');
+      alert("Please enter some information to update.");
     }
     //dispatch to saga
     this.props.dispatch({
       type: "UPDATE_ITEM",
       payload: this.state
     });
-    // this.setState({
-    //   pictures: "",
-    //   itemName: "",
-    //   minimumBid: 0,
-    //   itemDescription: ""
-    // });
     this.handleBack();
   };
 
+  //handles photo upload
+  handleFinishedUpload = info => {
+       console.log(
+         "File uploaded with filename",
+         info.filename
+       );
+       console.log(
+         "Access it on s3 at",
+         info.fileUrl
+       );
+       this.setState({
+           ...this.state,
+            photo: info.fileUrl
+         });
+       //dispatch to saga
+      //  this.props.dispatch({
+      //      type:"UPDATE_ITEM",
+      //      payload: this.state
+      //    });
+     };
+
   render() {
+    //handles photo upload
+    const uploadOptions = {
+      server: "http://localhost:5000",
+      signingUrlQueryParams: { uploadType: "avatar" }
+    };
+    const s3Url = "https://silentaction.s3.amazonaws.com";
+
     return (
       <div className="logInDiv">
         <BeneficiaryHeader />
@@ -102,7 +96,7 @@ class EditItem extends Component {
               <h2>ID: {this.props.reduxState.selectedItemReducer.id}</h2>
               {/* photo */}
               <div>
-                <TextField
+                {/* <TextField
                   id="photoURL"
                   margin="dense"
                   variant="outlined"
@@ -110,6 +104,12 @@ class EditItem extends Component {
                   value={this.state.photo || ""}
                   onChange={this.handleChangeFor("photo")}
                   helperText="Photo Url"
+                /> */}
+                <DropzoneS3Uploader
+                  onFinish={this.handleFinishedUpload}
+                  s3Url={s3Url}
+                  maxSize={1024 * 1024 * 5}
+                  upload={uploadOptions}
                 />
               </div>
               {/* conditionally renders image if photo exits */}
