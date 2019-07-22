@@ -28,15 +28,16 @@ class AdminHome extends Component {
   }
 
   componentDidMount() {
+    //get the user's auctions
     this.props.dispatch({
       type: "GET_ADMIN_AUCTIONS",
       payload: this.props.reduxState.user.id
     });
+    //get the user's contacts
     this.props.dispatch({
       type: "GET_CONTACTS",
       payload: this.props.reduxState.user.id
     })
-    // console.log(this.props.reduxState.user.id);
   }
 
   render() {
@@ -113,33 +114,11 @@ class AdminHome extends Component {
            }
 }
 
-// Instead of taking everything from state, we just want the user info.
-// if you wanted you could write this code like this:
-// const mapStateToProps = ({user}) => ({ user });
+
 const mapReduxStateToProps = reduxState => ({
   user: reduxState.user,
   reduxState,
 });
 
-// this allows us to use <App /> in index.js
+
 export default connect(mapReduxStateToProps)(AdminHome);
-
-
-
-
-
-// GIVEN CODE BELOW
-
-// this could also be written with destructuring parameters as:
-// const UserPage = ({ user }) => (
-// and then instead of `props.user.username` you could use `user.username`
-// const UserPage = (props) => (
-//   <div>
-//     <h1 id="welcome">
-//       Welcome back, { props.user.firstname }.
-//     </h1>
-//     <p>Your ID is: {props.user.id}</p>
-//     <LogOutButton className="log-in" />
-//   </div>
-// );
-
