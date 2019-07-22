@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+
+//css files
 import '../App/App.css';
 import './AuctionItemsList.css';
 
@@ -27,7 +29,6 @@ class AuctionItemsList extends Component {
   }
 
   handleDelete = event => {
-    // console.log('clicked delete, id:', event.target.value )
     this.props.dispatch({
       type: "DELETE_ITEM",
       payload: [event.target.value]
