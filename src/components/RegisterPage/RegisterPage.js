@@ -51,7 +51,9 @@ class RegisterPage extends Component {
 
         <form className="logInDiv">
           <Paper className="registerPaper">
-            <h1>Welcome to Silent Action.</h1>
+            <center>
+              <h1>Welcome to Silent Action.</h1>
+            </center>
             <p>
               Silent Action is a community-based platform to raise funds for
               persons in your community facing medical expenses. Easily

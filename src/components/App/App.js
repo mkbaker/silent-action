@@ -138,7 +138,7 @@ class App extends Component {
             <Footer />
 
             {/* this allows me to view redux state. delete later */}
-            <pre>{JSON.stringify(this.props.reduxState, null, 2)}</pre>
+            {/* <pre>{JSON.stringify(this.props.reduxState, null, 2)}</pre> */}
           </div>
         </Router>
       </MuiThemeProvider>

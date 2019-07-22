@@ -5,7 +5,7 @@ function* deleteItem(action) {
   try {
       console.log(action.payload);
     yield axios.delete("/api/delete/" + action.payload);
-    yield put({ type: "CLEAR_ITEMS" });
+    // yield put({ type: "CLEAR_ITEMS" });
   } catch (error) {
     console.log("error deleting item", error);
   }

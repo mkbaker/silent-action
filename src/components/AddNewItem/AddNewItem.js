@@ -111,23 +111,26 @@ class AddNewItem extends Component {
               <center>
                 <div>
                   <h5>Upload a Photo</h5>
-                  <DropzoneS3Uploader
-                    onFinish={this.handleFinishedUpload}
-                    s3Url={s3Url}
-                    maxSize={1024 * 1024 * 5}
-                    upload={uploadOptions}
-                  />
-                </div>
-                <div>
                   {this.state.pictures ? (
+                    <>
                     <img
                       src={this.state.pictures}
                       alt="Your pic here"
                       height="150px"
                       width="150px"
                     />
+                    <br />
+                    <button onClick={this.handleChangePhoto}>Change Photo</button>
+                    </>
                   ) : (
-                    <></>
+                    <>
+                      <DropzoneS3Uploader
+                        onFinish={this.handleFinishedUpload}
+                        s3Url={s3Url}
+                        maxSize={1024 * 1024 * 5}
+                        upload={uploadOptions}
+                      />
+                    </>
                   )}
                 </div>
               </center>
@@ -190,8 +193,8 @@ class AddNewItem extends Component {
           <center>
             <p>All done adding items?</p>
             <p>
-              Save and quit to save your progress and come back to the auction
-              later.
+              Save and quit to save your progress and come back to the
+              auction later.
             </p>
             <p>
               Review auction to view all items and invite friends to

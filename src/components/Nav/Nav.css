@@ -3,7 +3,7 @@
   font-weight: 700;
   font-family: 'Montserrat', sans-serif;
   display: inline-block;
-  color: #f4f4f8;
+  color: black;
   padding-left: 10px;
   margin-top: 9px;
   margin-bottom: -6px;
@@ -16,7 +16,7 @@
 
 .nav-link {
   float: left;
-  color: #f4f4f8;
+  color: black;
   background-color: #FED766;
   text-align: center;
   padding: 24px 10px;
